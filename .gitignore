@@ -1,29 +1,8 @@
+# Created by https://www.gitignore.io
+
+### Laravel ###
 /bootstrap/compiled.php
+.env.*.php
+.env.php
 /vendor
-
-
-/build/logs
-/build/coverage
-
-
-/app/tests/_log
-
-
-composer.phar
-
-
-.DS_Store
-
-
-/.idea
-/_ide_helper.php
-
-
-/app/config/packages
-/public/packages
-
-
 /node_modules
-
-
-.env
