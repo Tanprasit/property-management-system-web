@@ -1,22 +1,29 @@
-<<<<<<< HEAD
+/bootstrap/compiled.php
 /vendor
+
+
+/build/logs
+/build/coverage
+
+
+/app/tests/_log
+
+
+composer.phar
+
+
+.DS_Store
+
+
+/.idea
+/_ide_helper.php
+
+
+/app/config/packages
+/public/packages
+
+
 /node_modules
-Homestead.yaml
-Homestead.json
-.env
-=======
-vendor/
-node_modules/
 
-# Laravel 4 specific
-bootstrap/compiled.php
-app/storage/
 
-# Laravel 5 & Lumen specific
-bootstrap/cache/
-storage/
-.env.*.php
-.env.php
 .env
-.env.example
->>>>>>> 5f20cfacd861eeb42b07590c20149ee163fa4972
