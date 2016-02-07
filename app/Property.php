@@ -2,9 +2,9 @@
 
 namespace App;
 
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Model;
 
-class User extends Authenticatable
+class Property extends Model
 {
     /**
      * The attributes that are mass assignable.
@@ -12,10 +12,11 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'full_name',
-        'email',
-        'mobile'
-        'password',
+        'address_line_1',
+        'address_line_2',
+        'city',
+        'county',
+        'postcode',
     ];
 
     /**
@@ -24,12 +25,9 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 
-        'remember_token',
-        'status',
     ];
 
-    // Get devices for current user
+    // Get all devices that belongs to a property.
     public function devices() {
         return $this->morphMany('app/Device', 'deviceable');
     }
