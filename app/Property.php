@@ -29,6 +29,6 @@ class Property extends Model
 
     // Get all devices that belongs to a property.
     public function devices() {
-        return $this->morphMany('app/Device', 'deviceable');
+        return $this->morphToMany('App\Device', 'deviceable');
     }
 }

@@ -22,7 +22,6 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
     ];
 });
 
-
 $factory->define(App\Device::class, function(Faker\Generator $faker) {
     return [
         'model' => $faker->word,
@@ -46,6 +45,6 @@ $factory->define(App\Property::class, function(Faker\Generator $faker) {
 $factory->define(App\Notification::class, function(Faker\Generator $faker) {
     return [
         'type' => $faker->word,
-        'data' => $faker->str_random(50),
+        'data' => str_random(50),
     ];
 });

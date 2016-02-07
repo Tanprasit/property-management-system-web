@@ -27,13 +27,18 @@ class Device extends Model
     protected $hidden = [
     ];
 
-    // Polymorphic relationship for users and properties
-    public function deviceable() {
-        return $this->morphTo();
+    // Polymorphic relationship for users
+    public function users() {
+        return $this->morphedByMany('App\User', 'deviceable');
     }
+
+    // Polymorphic relationship for properties
+    public function properties() {
+        return $this->morphedByMany('App\Property', 'deviceable');
+    }    
 
     // Get all notifications that belongs to this device
     public function notifications() {
-        return $this->belongsToMany('app/Notifications');
+        return $this->belongsToMany('App\Notification');
     }
 }

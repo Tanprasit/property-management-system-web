@@ -14,8 +14,9 @@ class User extends Authenticatable
     protected $fillable = [
         'full_name',
         'email',
-        'mobile'
+        'mobile',
         'password',
+        'status',
     ];
 
     /**
@@ -31,6 +32,6 @@ class User extends Authenticatable
 
     // Get devices for current user
     public function devices() {
-        return $this->morphMany('app/Device', 'deviceable');
+        return $this->morphToMany('App\Device', 'deviceable');
     }
 }
