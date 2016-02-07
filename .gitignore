@@ -6,3 +6,4 @@
 .env.php
 /vendor
 /node_modules
+.env
