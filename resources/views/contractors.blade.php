@@ -1,10 +1,10 @@
 @extends('master')
 
 @section('navigation')
-<li class="active"><a href="#">Properties<span class="sr-only">(current)</span></a></li>
-<li><a href="#">Devices</a></li>
-<li><a href="#">Contractors</a></li>
-<li><a href="#">Notifications</a></li>
+<li><a href="{{ URL::to( 'properties' ) }}">Properties</span></a></li>
+<li><a href="{{ URL::to( 'devices' ) }}">Devices</a></li>
+<li class="active"><a href="{{ URL::to( 'contractors' ) }}">Contractors<span class="sr-only">(current)</a></li>
+<li><a href="{{ URL::to( 'notifications' ) }}">Notifications</a></li>
 @stop
 
 @section('content')

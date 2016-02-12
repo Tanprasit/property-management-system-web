@@ -15,8 +15,20 @@ Route::get('/', function () {
     return view('login');
 });
 
-Route::get('dashboard', function () {
-    return view('dashboard');
+Route::get('properties', function () {
+    return view('properties');
+});
+
+Route::get('contractors', function () {
+    return view('contractors');
+});
+
+Route::get('notifications', function () {
+    return view('notifications');
+});
+
+Route::get('devices', function () {
+    return view('devices');
 });
 
 /*
