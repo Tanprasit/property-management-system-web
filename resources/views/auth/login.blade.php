@@ -17,6 +17,12 @@
 <body>
     <div class="container">
         <div class="top">
+            @if(Session::has('error'))
+            <div class='alert alert-warning alert-dismissible' role="alert">
+                 <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span></button>
+                 {{ Session::get('error') }}
+             </div>
+            @endif
             <h1 id="title" class="hidden">
                 <span id="logo">Eastland</span> 
             </h1>
@@ -25,17 +31,19 @@
             <div class="box-header">
                 <h2>Log In</h2>
             </div>
-            <label for="username">Username</label>
-            <br/>
-            <input type="text" id="username">
-            <br/>
-            <label for="password">Password</label>
-            <br/>
-            <input type="password" id="password">
-            <br/>
-            <button type="submit">Sign In</button>
-            <br/>
-
+            <form action="auth.login" method="post">
+                {!! csrf_field() !!}
+                <label for="username"> Email</label>
+                <br/>
+                <input type="text" id="username" name="email" value="{{ old('email') }}">
+                <br/>
+                <label for="password">Password</label>
+                <br/>
+                <input type="password" id="password" name="password" value="{{ old('password') }}">
+                <br/>
+                <button type="submit">Sign In</button>
+                <br/>
+            </form>
             <!-- Disabled password recovery -->
             <!-- <a href="#"><p class="small">Forgot your password?</p></a> -->
         </div>
