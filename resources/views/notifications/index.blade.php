@@ -1,10 +1,10 @@
 @extends('master')
 
 @section('navigation')
-<li ><a href="{{ URL::to( 'properties') }}">Properties</a></li>
-<li class="active"><a href="{{ URL::to( 'devices' ) }}">Devices<span class="sr-only">(current)</span></a></li>
+<li><a href="{{ URL::to( 'properties') }}">Properties</a></li>
+<li><a href="{{ URL::to( 'devices' ) }}">Devices</span></a></li>
 <li><a href="{{ URL::to( 'contractors' ) }}">Contractors</a></li>
-<li><a href="{{ URL::to( 'notifications' ) }}">Notifications</a></li>
+<li class="active"><a href="{{ URL::to( 'notifications' ) }}">Notifications<span class="sr-only">(current)</a></li>
 @stop
 
 @section('content')
@@ -15,21 +15,15 @@
     <table id="devices-table" class="display" cellspacing="0" width="100%">
         <thead>
             <tr>
-                <th>Model</th>
-                <th>Manufactorer</th>
-                <th>Product</th>
-                <th>SDK Version</th>
-                <th>Serial Number</th>
+                <th>type</th>
+                <th>data</th>
             </tr>
         </thead>
         <tbody>
-        @foreach ($devices as $device)
+        @foreach ($notifications as $notification)
             <tr>
-                <td>{{ $device->model }}</td>
-                <td>{{ $device->manufactorer }}</td>
-                <td>{{ $device->product }}</td>
-                <td>{{ $device->sdk_version }}</td>
-                <td>{{ $device->serial_number }}</td>
+                <td>{{ $notification->type }}</td>
+                <td>{{ $notification->data }}</td>
             </tr>
         @endforeach
         </tbody>

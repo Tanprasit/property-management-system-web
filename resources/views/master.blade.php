@@ -34,7 +34,7 @@
           <ul class="nav navbar-nav navbar-right">
             <li><a href="#">{{ Auth::user()->full_name }}</a></li>
             <li><a href="#">Settings</a></li>
-            <li><a href="{{ Auth::logout() }}">Logout</a></li>
+            <li><a href="{{ action('Auth\AuthController@getLogout') }}">Logout</a></li>
           </ul>
           <form class="navbar-form navbar-right">
             <input type="text" class="form-control" placeholder="Search...">

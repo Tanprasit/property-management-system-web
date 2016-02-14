@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\User;
 
 class ContractorController extends Controller
 {
@@ -16,7 +17,10 @@ class ContractorController extends Controller
      */
     public function index()
     {
-        //
+        //Needs to filter this to contractors only
+        $contractors = User::all();
+
+        return View('contractors.index', compact('contractors'));
     }
 
     /**

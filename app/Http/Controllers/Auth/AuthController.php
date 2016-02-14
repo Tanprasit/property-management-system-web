@@ -7,6 +7,7 @@ use Auth;
 use Redirect;
 use Validator;
 use App\Http\Controllers\Controller;
+use Session;
 
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
@@ -32,9 +33,6 @@ class AuthController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/properties';
-
-    protected $redirectAfterLogout = '/';
 
     /**
      * Create a new authentication controller instance.
@@ -43,7 +41,7 @@ class AuthController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest', ['except' => 'logout']);
+        $this->middleware('guest', ['except' => 'getLogout']);
     }
 
     /**
@@ -86,4 +84,10 @@ class AuthController extends Controller
                 ->with('error', 'invalid credentials');
         }
     }
-}
+
+public function getLogout()
+    {
+        Auth::logout();
+        Session::flush();
+        return redirect('/');
+    }}

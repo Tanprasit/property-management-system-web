@@ -28,12 +28,13 @@ Route::group(['middleware' => ['web']], function () {
         Route::resource('notifications', 'NotificationController');
 
         Route::resource('devices', 'DeviceController');
+
+        Route::get('auth.logout', 'Auth\AuthController@getLogout');
     });
 
     // Authentication routes...
     Route::get('auth.login', 'Auth\AuthController@getLogin');
     Route::post('auth.login', 'Auth\AuthController@postLogin'); 
-    Route::get('auth.logout', 'Auth\AuthController@getLogout');
 
     // Registration routes...
     Route::get('auth.register', 'Auth\AuthController@getRegister');
