@@ -7,9 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use App\Property;
-
-class PropertyController extends Controller
+class NotificationController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,9 +17,6 @@ class PropertyController extends Controller
     public function index()
     {
         //
-        $properties = Property::all();
-        
-        return View('properties.index', compact('properties'));
     }
 
     /**
