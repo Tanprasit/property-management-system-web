@@ -10,7 +10,7 @@
     <title>Dashboard Template for Bootstrap</title>
 
     <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/dashboard.css">
 
     @section('css')
