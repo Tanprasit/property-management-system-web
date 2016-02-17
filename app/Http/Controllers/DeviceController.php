@@ -32,6 +32,7 @@ class DeviceController extends Controller
     public function create()
     {
         //
+        
     }
 
     /**
