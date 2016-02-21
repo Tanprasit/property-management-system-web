@@ -1,10 +1,7 @@
 @extends('master')
 
 @section('navigation')
-<li class="active"><a href="{{ URL::to( 'properties') }}">Properties<span class="sr-only">(current)</span></a></li>
-<li><a href="{{ URL::to( 'devices' ) }}">Devices</a></li>
-<li><a href="{{ URL::to( 'contractors' ) }}">Contractors</a></li>
-<li><a href="{{ URL::to( 'notifications' ) }}">Notifications</a></li>
+    @include('nav.properties')
 @stop
 
 @section('content')
@@ -19,16 +16,25 @@
                 <th>City</th>
                 <th>County</th>
                 <th>Postcode</th>
+                <th>Options</th>
             </tr>
         </thead>
         <tbody>
         @foreach ($properties as $property)
-            <tr>
+            <tr class="clickable-row" href="{{ URL::route('properties.show', [$property->id]) }}" onmouseover="this.style.cursor='pointer'" >
                 <td>{{ $property->address_line_1 }}</td>
                 <td>{{ $property->address_line_2 }}</td>
                 <td>{{ $property->city }}</td>
                 <td>{{ $property->county }}</td>
                 <td>{{ $property->postcode }}</td>
+                <td>
+                    <form method="POST" action="{{ URL::route('properties.destroy', [$property->id]) }}">
+                        {{ method_field('DELETE') }}
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        <a class="btn btn-primary" href="{{ URL::route('properties.edit', [$property->id] ) }}">Edit</a>
+                        <button class="btn btn-danger" type="submit">Delete</button>
+                    </form>
+                </td>
             </tr>
         @endforeach
         </tbody>
@@ -46,6 +52,11 @@
 <script type="text/javascript" src="lib/datatables.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function() {
+        // Add links to each property details page.
+        $('.clickable-row').click(function() {
+          window.document.location = $(this).attr("href");
+        });
+
         $('#properties-table').DataTable( {
             createdRow: function ( row ) {
                 $('td', row).attr('tabindex', 0);

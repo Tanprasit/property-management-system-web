@@ -36,7 +36,7 @@
                   </thead>
                   <tbody>
                   @foreach ($contractors as $contractor)
-                    <tr class="clickable-row" href="{{ URL::route('contractors.show', [$contractor->id]) }}" onmouseover="this.style.cursor='pointer'" >
+                    <tr class="clickable-row" href="{{ URL::route('contractors.show', [$contractor->id]) }}" onmouseover="this.style.cursor='pointer'">
                       <td>{{ $contractor->full_name }}</td>
                       <td>{{ $contractor->email }}</td>
                       <td>{{ $contractor->mobile }}</td>
