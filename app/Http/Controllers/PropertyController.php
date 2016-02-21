@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Property;
+use Redirect;
 
 class PropertyController extends Controller
 {
