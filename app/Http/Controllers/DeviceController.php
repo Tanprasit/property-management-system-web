@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Device;
+use Redirect;
 
 class DeviceController extends Controller
 {
@@ -32,6 +33,7 @@ class DeviceController extends Controller
     public function create()
     {
         //
+        return View('devices.create');
         
     }
 
@@ -44,6 +46,23 @@ class DeviceController extends Controller
     public function store(Request $request)
     {
         //
+        $model = $request->Input('model');
+        $manufacteror = $request->Input('manufacteror');
+        $product = $request->Input('product');
+        $sdk_version = $request->Input('sdk_version');
+        $serial_number = $request->Input('serial_number');
+
+        $newDevice = new Device();
+
+        $newDevice->model = $model;
+        $newDevice->manufacteror = $manufacteror;
+        $newDevice->product = $product;
+        $newDevice->sdk_version = $sdk_version;
+        $newDevice->serial_number = $serial_number;
+
+        $newDevice->save();
+
+        return Redirect::route('devices.show', [$newDevice->id]);
     }
 
     /**
@@ -55,6 +74,9 @@ class DeviceController extends Controller
     public function show($id)
     {
         //
+        $device = Device::find($id);
+
+        return View('devices.show', compact('device'));
     }
 
     /**
@@ -66,6 +88,9 @@ class DeviceController extends Controller
     public function edit($id)
     {
         //
+        $device = Device::find($id);
+
+        return View('devices.edit', compact('device'));
     }
 
     /**
@@ -78,6 +103,23 @@ class DeviceController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $device = Device::find($id);
+
+        $model = $request->Input('model');
+        $manufactorer = $request->Input('manufactorer');
+        $product = $request->Input('product');
+        $sdk_version = $request->Input('sdk_version');
+        $serial_number = $request->Input('serial_number');
+
+        $device->model = $model;
+        $device->manufactorer = $manufactorer;
+        $device->product = $product;
+        $device->sdk_version = $sdk_version;
+        $device->serial_number = $serial_number;
+
+        $device->save();
+
+        return Redirect::route('devices.show', [$device->id]);
     }
 
     /**
@@ -89,5 +131,8 @@ class DeviceController extends Controller
     public function destroy($id)
     {
         //
+        $device = Device::find($id);
+
+        return Redirect::route('devices.index');
     }
 }
