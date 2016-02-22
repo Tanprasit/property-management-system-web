@@ -45,11 +45,15 @@ class NotificationController extends Controller
     public function store(Request $request)
     {
         //
+        $title = $request->Input('title');        
+        $notes = $request->Input('notes');
         $type = $request->Input('type');
         $data = $request->Input('data');
 
         $notification = new Notification();
 
+        $notification->title = $title;
+        $notification->notes = $notes;
         $notification->type = $type;
         $notification->data = $data;
 
@@ -100,7 +104,6 @@ class NotificationController extends Controller
         //
         $notification = Notification::find($id);
 
-
         $title = $request->Input('title');        
         $notes = $request->Input('notes');
         $type = $request->Input('type');
@@ -113,7 +116,9 @@ class NotificationController extends Controller
 
         $notification->save();
 
-        return Redirect::route('notifications.show', [$notification->id]);
+        $redirectURL = route('notifications.show', [$notification->id]);
+
+        return response()->json(['redirectURL' => $redirectURL]);
     }
 
     /**

@@ -26,8 +26,8 @@
                 <table id="notifications-table" class="display nowrap" cellspacing="0" width="100%">
                     <thead>
                         <tr>
-                           <th>Type</th>
                            <th>Title</th>
+                           <th>Type</th>
                            <th>Notes</th>
                            <th>Options</th>
                         </tr>
@@ -35,8 +35,8 @@
                     <tbody>
                     @foreach ($notifications as $notification)
                         <tr class="clickable-row" href="{{ URL::route('notifications.show', [$notification->id]) }}" onmouseover="this.style.cursor='pointer'" >
-                            <td>{{ $notification->type }}</td>
                             <td>{{ $notification->title }}</td>
+                            <td>{{ $notification->type }}</td>
                             <td>{{ $notification->notes }}</td>
                             <td>
                                 <form method="POST" action="{{ URL::route('notifications.destroy', [$notification->id]) }}">

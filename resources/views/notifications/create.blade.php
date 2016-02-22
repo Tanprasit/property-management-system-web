@@ -10,6 +10,7 @@
     <div class="row">
         <div class="col-lg-6">
             <form>
+                <meta name="csrf-token" content="{{ csrf_token() }}">
                 <div class="form-group col-lg-12">
                     <label>Title</label>
                     <input  id="title" class="form-control" type="text" name="title" class="form-control" value="">
@@ -59,7 +60,12 @@
             var data = encodeURIComponent(content);
 
             // Encode the data before ajax request. Otherwise, we will get multiple request headers.
-            var dataString ='_token=' + CSRF_TOKEN + '&data=' + data +'&type=' + type;
+            var dataString =
+                '_token=' + CSRF_TOKEN + 
+                '&data=' + data + 
+                '&type=' + type + 
+                '&title=' + title + 
+                '&notes=' + notes;
 
             $.ajax({
                 type: 'POST',
