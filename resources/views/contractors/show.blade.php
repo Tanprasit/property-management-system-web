@@ -1,7 +1,7 @@
 @extends('master')
 
 @section('navigation')
-    @include('nav.contractor')
+    @include('nav.contractors')
 @stop
 
 @section('content')

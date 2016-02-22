@@ -44,7 +44,9 @@ $factory->define(App\Property::class, function(Faker\Generator $faker) {
 
 $factory->define(App\Notification::class, function(Faker\Generator $faker) {
     return [
+        'title' => $faker->word,
         'type' => $faker->word,
+        'notes' => $faker->word,
         'data' => str_random(50),
     ];
 });

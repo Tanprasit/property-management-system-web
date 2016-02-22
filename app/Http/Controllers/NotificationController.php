@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+
 use App\Notification;
+use Redirect;
 
 class NotificationController extends Controller
 {
@@ -31,6 +33,7 @@ class NotificationController extends Controller
     public function create()
     {
         //
+        return View('notifications.create');
     }
 
     /**
@@ -42,6 +45,19 @@ class NotificationController extends Controller
     public function store(Request $request)
     {
         //
+        $type = $request->Input('type');
+        $data = $request->Input('data');
+
+        $notification = new Notification();
+
+        $notification->type = $type;
+        $notification->data = $data;
+
+        $notification->save();
+
+        $redirectURL = route('notifications.show', [$notification->id]);
+
+        return response()->json(['redirectURL' => $redirectURL]);
     }
 
     /**
@@ -53,6 +69,9 @@ class NotificationController extends Controller
     public function show($id)
     {
         //
+        $notification = Notification::find($id);
+
+        return View('notifications.show', compact('notification'));
     }
 
     /**
@@ -64,6 +83,9 @@ class NotificationController extends Controller
     public function edit($id)
     {
         //
+        $notification = Notification::find($id);
+
+        return  View('notifications.edit', compact('notification'));
     }
 
     /**
@@ -76,6 +98,22 @@ class NotificationController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $notification = Notification::find($id);
+
+
+        $title = $request->Input('title');        
+        $notes = $request->Input('notes');
+        $type = $request->Input('type');
+        $data = $request->Input('data');
+
+        $notification->title = $title;
+        $notification->notes = $notes;
+        $notification->type = $type;
+        $notification->data = $data;
+
+        $notification->save();
+
+        return Redirect::route('notifications.show', [$notification->id]);
     }
 
     /**
@@ -87,5 +125,10 @@ class NotificationController extends Controller
     public function destroy($id)
     {
         //
+        $notification = Notification::find($id);
+
+        $notification->delete();
+
+        return Redirect::route('notifications.index');
     }
 }
