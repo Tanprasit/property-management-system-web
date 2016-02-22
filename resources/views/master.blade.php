@@ -10,8 +10,8 @@
     <title>Dashboard Template for Bootstrap</title>
 
     <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/dashboard.css">
 
     @section('css')
     @show
@@ -19,6 +19,7 @@
 
   <body>
 
+    <!-- Navigation -->
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container-fluid">
         <div class="navbar-header">
@@ -30,37 +31,44 @@
           </button>
           <a class="navbar-brand" href="#">Property Management System</a>
         </div>
+
+        <!-- Navigation top bar -->
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">{{ Auth::user()->full_name }}</a></li>
-            <li><a href="#">Settings</a></li>
-            <li><a href="{{ action('Auth\AuthController@getLogout') }}">Logout</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown">{{ Auth::user()->full_name }} <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="{{ action('Auth\AuthController@getLogout') }}">Logout</a></li>
+              </ul>
+            </li>
           </ul>
-          <form class="navbar-form navbar-right">
-            <input type="text" class="form-control" placeholder="Search...">
-          </form>
+            <!-- Supports nagivation for small devices -->
+            <ul class="nav navbar-nav navbar-left hidden-lg hidden-md hidden-sm">
+              @yield('navigation')
+            </ul>
         </div>
-      </div>
     </nav>
 
     <div class="container-fluid">
+      <!-- Nagivation side bar -->
+      <div class="col-sm-3 col-md-2 sidebar">
+        <ul class="nav nav-sidebar">
+          @yield('navigation')
+        </ul>
+      </div>
+    </div>
       <div class="row">
-        <div class="col-sm-3 col-md-2 sidebar">
-          <ul class="nav nav-sidebar">
-            @yield('navigation')
-          </ul>
-        </div>
-
         @yield('content')
       </div>
     </div>
+
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-    <script src="scripts/bootstrap.min.js"></script>
+    <script src="/scripts/bootstrap.min.js"></script>
     <!-- Location for extra scripts -->
     @section('scripts')
     @show

@@ -39,8 +39,7 @@ class AuthController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
+    public function __construct() {
         $this->middleware('guest', ['except' => 'getLogout']);
     }
 
@@ -50,13 +49,12 @@ class AuthController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    protected function validator(array $data)
-    {
+    protected function validator(array $data) {
         return Validator::make($data, [
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|confirmed|min:6',
-        ]);
+            ]);
     }
 
     /**
@@ -65,13 +63,12 @@ class AuthController extends Controller
      * @param  array  $data
      * @return User
      */
-    protected function create(array $data)
-    {
+    protected function create(array $data) {
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
-        ]);
+            ]);
     }
 
     public function postLogin(Request $request) {
@@ -80,14 +77,15 @@ class AuthController extends Controller
             return redirect()->action('PropertyController@index');
         } else {
             return Redirect::to('/')
-                ->withInput()
-                ->with('error', 'invalid credentials');
+            ->withInput()
+            ->with('error', 'invalid credentials');
         }
     }
 
-public function getLogout()
-    {
+
+    public function getLogout() {
         Auth::logout();
         Session::flush();
+        
         return redirect('/');
     }}

@@ -13,9 +13,10 @@ class Notification extends Model
      */
     protected $fillable = [
         'type',
+        'title',
+        'notes',
         'data'
     ];
-
     /**
      * The attributes excluded from the model's JSON form.
      *

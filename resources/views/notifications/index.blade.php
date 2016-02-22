@@ -1,33 +1,59 @@
 @extends('master')
 
 @section('navigation')
-<li><a href="{{ URL::to( 'properties') }}">Properties</a></li>
-<li><a href="{{ URL::to( 'devices' ) }}">Devices</span></a></li>
-<li><a href="{{ URL::to( 'contractors' ) }}">Contractors</a></li>
-<li class="active"><a href="{{ URL::to( 'notifications' ) }}">Notifications<span class="sr-only">(current)</a></li>
+    @include('nav.notifications')
 @stop
 
 @section('content')
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-  <h1 class="page-header">Dashboard</h1>
-  <h2 class="sub-header">Table Section</h2>
-  <div class="table-responsive">
-    <table id="devices-table" class="display" cellspacing="0" width="100%">
-        <thead>
-            <tr>
-                <th>type</th>
-                <th>data</th>
-            </tr>
-        </thead>
-        <tbody>
-        @foreach ($notifications as $notification)
-            <tr>
-                <td>{{ $notification->type }}</td>
-                <td>{{ $notification->data }}</td>
-            </tr>
-        @endforeach
-        </tbody>
-    </table>
+  <div class="row">
+      <div class="col-lg-12">
+          <h1 class="page-header">Notifications</h1>
+      </div>
+  </div>
+  <br/>
+  <div class="row">
+      <div class="col-lg-12">
+          <div class="panel panel-default">
+          <div class="panel-heading clearfix">
+            <b>Notification List</b>
+            <div class="btn-group pull-right">
+                <a href="{{ URL::route('notifications.create') }}" class="btn btn-primary ">Add Notification</a>
+            </div>
+           </div>
+            <div class="panel-body">
+              <div class="table-responsive">
+                <table id="notifications-table" class="display nowrap" cellspacing="0" width="100%">
+                    <thead>
+                        <tr>
+                           <th>Title</th>
+                           <th>Type</th>
+                           <th>Notes</th>
+                           <th>Options</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    @foreach ($notifications as $notification)
+                        <tr class="clickable-row" href="{{ URL::route('notifications.show', [$notification->id]) }}" onmouseover="this.style.cursor='pointer'" >
+                            <td>{{ $notification->title }}</td>
+                            <td>{{ $notification->type }}</td>
+                            <td>{{ $notification->notes }}</td>
+                            <td>
+                                <form method="POST" action="{{ URL::route('notifications.destroy', [$notification->id]) }}">
+                                    {{ method_field('DELETE') }}
+                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                    <a class="btn btn-primary" href="{{ URL::route('notifications.edit', [$notification->id] ) }}">Edit</a>
+                                    <button class="btn btn-danger" type="submit">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+      </div>
   </div>
 </div>
 @stop
@@ -41,11 +67,14 @@
 <script type="text/javascript" src="lib/datatables.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function() {
-        $('#devices-table').DataTable( {
-            createdRow: function ( row ) {
-                $('td', row).attr('tabindex', 0);
-            }
-        } );
+        // Add links to each notification details page.
+        $('.clickable-row').click(function() {
+          window.document.location = $(this).attr("href");
+        });
+
+        $('#notifications-table').DataTable( {
+            "scrollX": true
+        });
     } );
 </script>
 @stop
