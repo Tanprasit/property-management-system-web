@@ -5,56 +5,54 @@
 @stop
 
 @section('content')
-<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-  <div class="row">
-      <div class="col-lg-12">
-          <h1 class="page-header">Notifications</h1>
-      </div>
-  </div>
-  <br/>
-  <div class="row">
-      <div class="col-lg-12">
-          <div class="panel panel-default">
-          <div class="panel-heading clearfix">
-            <b>Notification List</b>
-            <div class="btn-group pull-right">
-                <a href="{{ URL::route('notifications.create') }}" class="btn btn-primary ">Add Notification</a>
-            </div>
-           </div>
-            <div class="panel-body">
-              <div class="table-responsive">
-                <table id="notifications-table" class="display nowrap" cellspacing="0" width="100%">
-                    <thead>
-                        <tr>
-                           <th>Title</th>
-                           <th>Type</th>
-                           <th>Notes</th>
-                           <th>Options</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    @foreach ($notifications as $notification)
-                        <tr class="clickable-row" href="{{ URL::route('notifications.show', [$notification->id]) }}" onmouseover="this.style.cursor='pointer'" >
-                            <td>{{ $notification->title }}</td>
-                            <td>{{ $notification->type }}</td>
-                            <td>{{ $notification->notes }}</td>
-                            <td>
-                                <form method="POST" action="{{ URL::route('notifications.destroy', [$notification->id]) }}">
-                                    {{ method_field('DELETE') }}
-                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                    <a class="btn btn-primary" href="{{ URL::route('notifications.edit', [$notification->id] ) }}">Edit</a>
-                                    <button class="btn btn-danger" type="submit">Delete</button>
-                                </form>
-                            </td>
-                        </tr>
-                    @endforeach
-                    </tbody>
-                </table>
-              </div>
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">Notifications</h1>
+    </div>
+</div>
+<br/>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+        <div class="panel-heading clearfix">
+          <b>Notification List</b>
+          <div class="btn-group pull-right">
+              <a href="{{ URL::route('notifications.create') }}" class="btn btn-primary ">Add Notification</a>
+          </div>
+         </div>
+          <div class="panel-body">
+            <div class="table-responsive">
+              <table id="notifications-table" class="display nowrap" cellspacing="0" width="100%">
+                  <thead>
+                      <tr>
+                         <th>Title</th>
+                         <th>Type</th>
+                         <th>Notes</th>
+                         <th>Options</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                  @foreach ($notifications as $notification)
+                      <tr class="clickable-row" href="{{ URL::route('notifications.show', [$notification->id]) }}" onmouseover="this.style.cursor='pointer'" >
+                          <td>{{ $notification->title }}</td>
+                          <td>{{ $notification->type }}</td>
+                          <td>{{ $notification->notes }}</td>
+                          <td>
+                              <form method="POST" action="{{ URL::route('notifications.destroy', [$notification->id]) }}">
+                                  {{ method_field('DELETE') }}
+                                  <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                  <a class="btn btn-primary" href="{{ URL::route('notifications.edit', [$notification->id] ) }}">Edit</a>
+                                  <button class="btn btn-danger" type="submit">Delete</button>
+                              </form>
+                          </td>
+                      </tr>
+                  @endforeach
+                  </tbody>
+              </table>
             </div>
           </div>
-      </div>
-  </div>
+        </div>
+    </div>
 </div>
 @stop
 

@@ -7,19 +7,25 @@
     <!-- Google Fonts -->
     <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700|Lato:400,100,300,700,900' rel='stylesheet' type='text/css'>
 
-    <!-- Custom Stylesheet -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+        <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+        <!-- Custom Stylesheet -->
     <link rel="stylesheet" href="css/login-animate.css">
     <link rel="stylesheet" href="css/login-style.css">
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <!-- Alert JS -->
+      <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 </head>
 
 <body>
     <div class="container">
         <div class="top">
             @if(Session::has('error'))
-            <div class='alert alert-warning alert-dismissible' role="alert">
-                 <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span></button>
+             <div class="alert alert-danger">
+               <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                  {{ Session::get('error') }}
              </div>
             @endif

@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Property;
+use App\Device;
 use Redirect;
 
 class PropertyController extends Controller
@@ -73,7 +74,18 @@ class PropertyController extends Controller
         //
         $property = Property::find($id);
 
-        return View('properties.show', compact('property'));
+        $currentDevicesIds = [];
+        $index = 0;
+
+        foreach ($property->devices() as $device) {
+            $currentDevicesIds[$index++] = $device->id;
+        }
+
+        $devices = Device::whereNotIn('id', $currentDevicesIds)->get();
+
+        // $devices = Device::all();
+
+        return View('properties.show', compact('property', 'devices'));
     }
 
     /**
@@ -131,5 +143,31 @@ class PropertyController extends Controller
         $property->delete();
 
         return Redirect::route('properties.index');
+    }
+
+    // Mapping a single device to a property. Will update this later allow multiple additions.
+    public function addDevice(Request $request, $id) {
+        $property = Property::find($id);
+
+        $device_id = $request->Input('device_id');
+
+        $property->devices()->attach($device_id);
+
+        $property->save();
+
+        return Redirect::route('properties.show', [$property->id]);
+    }
+
+    // Remove disconnecting a device from a property. 
+    public function removeDevice(Request $request, $id) {
+        $property = Property::find($id);
+
+        $device_id = $request->Input('device_id');
+
+        $property->devices()->detach($device_id);
+
+        $property->save();
+
+        return Redirect::route('properties.show', [$property->id]);
     }
 }

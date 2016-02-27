@@ -78,7 +78,7 @@ class AuthController extends Controller
         } else {
             return Redirect::to('/')
             ->withInput()
-            ->with('error', 'invalid credentials');
+            ->with('error', 'Invalid credentials');
         }
     }
 

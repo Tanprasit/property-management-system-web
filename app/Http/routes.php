@@ -30,6 +30,10 @@ Route::group(['middleware' => ['web']], function () {
         Route::resource('devices', 'DeviceController');
 
         Route::get('auth.logout', 'Auth\AuthController@getLogout');
+
+        // Connect a device to a property
+        Route::post('properties/{id}/addDevice', 'PropertyController@addDevice');
+        Route::post('properties/{id}/removeDevice', 'PropertyController@removeDevice');
     });
 
     // Authentication routes...

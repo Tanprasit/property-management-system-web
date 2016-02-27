@@ -18,10 +18,10 @@
   </head>
 
   <body>
-
     <!-- Navigation -->
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container-fluid">
+      <!-- Alerts/ Messages -->
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
             <span class="sr-only">Toggle navigation</span>
@@ -57,8 +57,23 @@
         </ul>
       </div>
     </div>
-      <div class="row">
-        @yield('content')
+    <div class="row">
+      <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+      @if(Session::has('error'))
+      <div class="alert alert-danger">
+          {{ Sesson::get('error') }}
+        </div>
+      @elseif(Session::has('success'))
+        <div class="alert alert-success">
+          {{ Sesson::get('success') }}
+        </div>
+      @elseif(Session::has('message'))
+        <div class="alert alert-warning">
+          {{ Sesson::get('message') }}
+        </div>
+      @endif
+      @yield('content')
+      </div>
       </div>
     </div>
 

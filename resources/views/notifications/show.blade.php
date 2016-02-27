@@ -5,9 +5,7 @@
 @stop
 
 @section('content')
-<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
- <?php echo $notification->data ?>
-</div>
+    <?php echo $notification->data ?>
 @stop
 
 @section('scripts')
