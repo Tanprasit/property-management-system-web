@@ -136,4 +136,10 @@ class NotificationController extends Controller
 
         return Redirect::route('notifications.index');
     }
+
+    public function apiShow($id) {
+        $notification = Notification::find($id);
+
+        return $notification->JsonSerializable();
+    }
 }

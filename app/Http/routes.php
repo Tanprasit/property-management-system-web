@@ -49,4 +49,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('auth.register', 'Auth\AuthController@getRegister');
     Route::post('auth.register', 'Auth\AuthController@postRegister');
 
+    // API for retreiving notification codes
+    Route::get('api/v1/notifications/{id}', 'NotificationController@apiShow');
+
 });
