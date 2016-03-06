@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Device;
+use App\Notification;
 use Redirect;
 
 class DeviceController extends Controller
@@ -76,7 +77,9 @@ class DeviceController extends Controller
         //
         $device = Device::find($id);
 
-        return View('devices.show', compact('device'));
+        $notifications = Notification::all();
+
+        return View('devices.show', compact('device', 'notifications'));
     }
 
     /**
@@ -134,5 +137,31 @@ class DeviceController extends Controller
         $device = Device::find($id);
 
         return Redirect::route('devices.index');
+    }
+
+    // Add notification to device
+    public function addNotification(Request $request, $id) {
+        $device = Device::find($id);
+
+        $notification_id = $request->Input('notification_id');
+
+        $device->notifications()->attach($notification_id);
+
+        $device->save();
+
+        return Redirect::route('devices.show', [$device->id]);
+    }
+
+    // Remove notification from a device
+    public function removeNotification(Request $request, $id) {
+        $device = Device::find($id);
+
+        $notification_id = $request->Input('notification_id');
+
+        $device->notifications()->detach($notification_id);
+
+        $device->save();
+
+        return Redirect::route('devices.show', [$device->id]);
     }
 }

@@ -27,6 +27,6 @@ class Notification extends Model
 
     // Get all devices that have this notification
     public function devices() {
-        return $this->belongsToMany('app/Devices');
+        return $this->belongsToMany('App\Device');
     }
 }

@@ -5,6 +5,7 @@
 @stop
 
 @section('content')
+<div class="row">
   <h1 class="page-header">Property Details</h1>
   <div class="col-lg-6">
       <div class="form-group col-lg-12">
@@ -42,31 +43,31 @@
 
       <p>Acceptance of an order by us is dependent on our suppliers ability to provide the product. (Paragraph 13.5.6)</p>
   </div>
+</div>
 
 <!-- Second table for displaying all devices connected to current property -->
-  <h2 class="page-header">Connected Devices</h2>
-  <div class="row">
-      <div class="col-lg-12">
-          <div class="panel panel-default">
-          <div class="panel-heading clearfix">
-            <div class="btn-group pull-right ">
-                <button class="btn btn-primary" data-target="#addDeviceModal"  data-toggle="modal">Add Device</button>
-            </div>
-           </div>
-            <div class="panel-body">
-              <div class="table-responsive">
-                <table id="devices-table" class="display nowrap" cellspacing="0" width="100%">
-                    <thead>
-                        <tr>
-                            <th>Model</th>
-                            <th>Manufactorer</th>
-                            <th>Product</th>
-                            <th>SDK Version</th>
-                            <th>Serial Number</th>
-                        <th>Options</th>
-                        </tr>
-                    </thead>
-                    <tbody>
+<div class="row">
+        <h2 class="page-header">Connected Devices</h2>
+        <div class="panel panel-default">
+        <div class="panel-heading clearfix">
+          <div class="btn-group pull-right ">
+              <button class="btn btn-primary" data-target="#addDeviceModal"  data-toggle="modal">Add Device</button>
+          </div>
+         </div>
+          <div class="panel-body">
+            <div class="table-responsive">
+              <table id="devices-table" class="display nowrap" cellspacing="0" width="100%">
+                  <thead>
+                      <tr>
+                          <th>Model</th>
+                          <th>Manufactorer</th>
+                          <th>Product</th>
+                          <th>SDK Version</th>
+                          <th>Serial Number</th>
+                      <th>Options</th>
+                      </tr>
+                  </thead>
+                  <tbody>
                     @foreach ($property->devices as $device)
                         <tr class="clickable-row"  href="{{ URL::route('devices.show', [$device->id]) }}" onmouseover="this.style.cursor='pointer'">
                             <td>{{ $device->model }}</td>
@@ -76,19 +77,19 @@
                             <td>{{ $device->serial_number }}</td>
                             <td>
                                 <form method="POST" action="/properties/{{ $property->id }}/removeDevice">
+                                  <input type="hidden" name="device_id" value="{{ $device->id }}"></input>
                                     {!! csrf_field() !!}
                                     <button class="btn btn-danger" type="submit">Remove</button>
                                 </form>
                             </td>
                         </tr>
-                    @endforeach
-                    </tbody>
-                </table>
-              </div>
+                  @endforeach
+                </tbody>
+              </table>
             </div>
           </div>
       </div>
-  </div>
+</div>
 
 <!-- Modal -->
 <div class="modal fade" id="addDeviceModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">

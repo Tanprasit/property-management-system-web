@@ -31,9 +31,14 @@ Route::group(['middleware' => ['web']], function () {
 
         Route::get('auth.logout', 'Auth\AuthController@getLogout');
 
-        // Connect a device to a property
+        // Properties and devices relationship routes.
         Route::post('properties/{id}/addDevice', 'PropertyController@addDevice');
         Route::post('properties/{id}/removeDevice', 'PropertyController@removeDevice');
+
+        // Devices and notification relationship routes.
+        Route::post('devices/{id}/addNotification', 'DeviceController@addNotification');
+        Route::post('devices/{id}/removeNotification', 'DeviceController@removeNotification');        
+
     });
 
     // Authentication routes...
