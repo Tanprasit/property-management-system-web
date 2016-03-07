@@ -3,8 +3,9 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use JsonSerializable;
 
-class Device extends Model
+class Device extends Model implements JsonSerializable
 {
     /**
      * The attributes that are mass assignable.
@@ -13,7 +14,7 @@ class Device extends Model
      */
     protected $fillable = [
         'model',
-        'manufactorer',
+        'manufacturer',
         'product',
         'sdk_version',
         'serial_number',
@@ -40,5 +41,15 @@ class Device extends Model
     // Get all notifications that belongs to this device
     public function notifications() {
         return $this->belongsToMany('App\Notification');
+    }
+
+    public function JsonSerializable() {
+        return [
+            'model' => $this->model,
+            'manufactorer' => $this->manufacturer,
+            'product' => $this->product,
+            'sdk_version' => $this->sdk_version,
+            'serial_number' => $this->serial_number
+        ];
     }
 }

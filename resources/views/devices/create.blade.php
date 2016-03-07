@@ -16,8 +16,8 @@
             </div>
 
             <div class="form-group col-lg-12">
-                <label>Manufactorer</label>
-                <input type="text" name="manufactorer" class="form-control" value="">
+                <label>manufacturer</label>
+                <input type="text" name="manufacturer" class="form-control" value="">
             </div>
 
             <div class="form-group col-lg-12">

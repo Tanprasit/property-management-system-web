@@ -48,7 +48,7 @@ class DeviceController extends Controller
     {
         //
         $model = $request->Input('model');
-        $manufacteror = $request->Input('manufacteror');
+        $manufacturer = $request->Input('manufacturer');
         $product = $request->Input('product');
         $sdk_version = $request->Input('sdk_version');
         $serial_number = $request->Input('serial_number');
@@ -56,7 +56,7 @@ class DeviceController extends Controller
         $newDevice = new Device();
 
         $newDevice->model = $model;
-        $newDevice->manufacteror = $manufacteror;
+        $newDevice->manufacturer = $manufacturer;
         $newDevice->product = $product;
         $newDevice->sdk_version = $sdk_version;
         $newDevice->serial_number = $serial_number;
@@ -109,13 +109,13 @@ class DeviceController extends Controller
         $device = Device::find($id);
 
         $model = $request->Input('model');
-        $manufactorer = $request->Input('manufactorer');
+        $manufacturer = $request->Input('manufacturer');
         $product = $request->Input('product');
         $sdk_version = $request->Input('sdk_version');
         $serial_number = $request->Input('serial_number');
 
         $device->model = $model;
-        $device->manufactorer = $manufactorer;
+        $device->manufacturer = $manufacturer;
         $device->product = $product;
         $device->sdk_version = $sdk_version;
         $device->serial_number = $serial_number;
@@ -163,5 +163,26 @@ class DeviceController extends Controller
         $device->save();
 
         return Redirect::route('devices.show', [$device->id]);
+    }
+
+    // Register new device using api
+    public function apiRegister(Request $request) {
+        $model = $request->Input('model');
+        $manufacturer = $request->Input('manufacturer');
+        $product = $request->Input('product');
+        $sdk_version = $request->Input('sdk_version');
+        $serial_number = $request->Input('serial_number');
+
+        $newDevice = new Device();
+
+        $newDevice->model = $model;
+        $newDevice->manufacturer = $manufacturer;
+        $newDevice->product = $product;
+        $newDevice->sdk_version = $sdk_version;
+        $newDevice->serial_number = $serial_number;
+
+        $newDevice->save();
+
+        return $newDevice->JsonSerializable();
     }
 }

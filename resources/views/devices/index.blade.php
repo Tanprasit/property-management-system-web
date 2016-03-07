@@ -26,7 +26,7 @@
                   <thead>
                       <tr>
                           <th>Model</th>
-                          <th>Manufactorer</th>
+                          <th>manufacturer</th>
                           <th>Product</th>
                           <th>SDK Version</th>
                           <th>Serial Number</th>
@@ -37,7 +37,7 @@
                   @foreach ($devices as $device)
                       <tr class="clickable-row"  href="{{ URL::route('devices.show', [$device->id]) }}" onmouseover="this.style.cursor='pointer'">
                           <td>{{ $device->model }}</td>
-                          <td>{{ $device->manufactorer }}</td>
+                          <td>{{ $device->manufacturer }}</td>
                           <td>{{ $device->product }}</td>
                           <td>{{ $device->sdk_version }}</td>
                           <td>{{ $device->serial_number }}</td>
