@@ -167,21 +167,27 @@ class DeviceController extends Controller
 
     // Register new device using api
     public function apiRegister(Request $request) {
+
         $model = $request->Input('model');
         $manufacturer = $request->Input('manufacturer');
         $product = $request->Input('product');
         $sdk_version = $request->Input('sdk_version');
         $serial_number = $request->Input('serial_number');
 
-        $newDevice = new Device();
+        // Check if serial number exists in database
+        $newDevice = Device::where('serial_number', '=', $serial_number)->first();
 
-        $newDevice->model = $model;
-        $newDevice->manufacturer = $manufacturer;
-        $newDevice->product = $product;
-        $newDevice->sdk_version = $sdk_version;
-        $newDevice->serial_number = $serial_number;
+        if (null == $newDevice) {
+            $newDevice = new Device();
 
-        $newDevice->save();
+            $newDevice->model = $model;
+            $newDevice->manufacturer = $manufacturer;
+            $newDevice->product = $product;
+            $newDevice->sdk_version = $sdk_version;
+            $newDevice->serial_number = $serial_number;
+
+            $newDevice->save();
+        } 
 
         return $newDevice->JsonSerializable();
     }
