@@ -191,4 +191,10 @@ class DeviceController extends Controller
 
         return $newDevice->JsonSerializable();
     }
+
+    public function apiShow(Request $request, $id) {
+        $device = Device::find($id);
+
+        return $device->JsonSerializable();
+    }
 }

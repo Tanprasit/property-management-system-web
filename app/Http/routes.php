@@ -48,13 +48,13 @@ Route::group(['middleware' => ['web']], function () {
     // Registration routes...
     Route::get('auth.register', 'Auth\AuthController@getRegister');
     Route::post('auth.register', 'Auth\AuthController@postRegister');
-
-
-
 });
 
 // API for retreiving notification codes
 Route::get('api/v1/notifications/{id}', 'NotificationController@apiShow');
+
+// API for retreiving device
+Route::get('api/v1/devices/{id}', 'DeviceController@apiShow');
 
 // API for registering new devices
 Route::post('api/v1/register/device/', 'DeviceController@apiRegister');

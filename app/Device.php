@@ -45,11 +45,13 @@ class Device extends Model implements JsonSerializable
 
     public function JsonSerializable() {
         return [
+            'id' => $this->id,
             'model' => $this->model,
             'manufactorer' => $this->manufacturer,
             'product' => $this->product,
             'sdk_version' => $this->sdk_version,
-            'serial_number' => $this->serial_number
+            'serial_number' => $this->serial_number,
+            'notificationsList' => $this->notifications()->get()
         ];
     }
 }

@@ -69,7 +69,7 @@
                         </thead>
                         <tbody>
                         @foreach ($device->notifications as $notification)
-                            <tr class="clickable-row"  href="{{ URL::route('devices.show', [$device->id]) }}" onmouseover="this.style.cursor='pointer'">
+                            <tr class="clickable-row"  href="{{ URL::route('notifications.show', [$notification->id]) }}" onmouseover="this.style.cursor='pointer'">
                                 <td>{{ $notification->title }}</td>
                                 <td>{{ $notification->type }}</td>
                                 <td>{{ $notification->notes }}</td>
