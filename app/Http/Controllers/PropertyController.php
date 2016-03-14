@@ -50,6 +50,7 @@ class PropertyController extends Controller
         $address_line_2 = $request->Input('address_line_2');
         $city = $request->Input('city');
         $county = $request->Input('county');
+        $postcode = $request->input('postcode');
 
         $newProperty = new Property();
 
@@ -57,6 +58,7 @@ class PropertyController extends Controller
         $newProperty->address_line_2 = $address_line_2;
         $newProperty->city = $city;
         $newProperty->county = $county;
+        $newProperty->postcode = $postcode;
 
         $newProperty->save();
 
@@ -118,11 +120,13 @@ class PropertyController extends Controller
         $address_line_2 = $request->Input('address_line_2');
         $city = $request->Input('city');
         $county = $request->Input('county');
+        $postcode = $request->input('postcode');
 
         $property->address_line_1 = $address_line_1;
         $property->address_line_2 = $address_line_2;
         $property->city = $city;
         $property->county = $county;
+        $property->postcode = $postcode;
 
         $property->save();
 

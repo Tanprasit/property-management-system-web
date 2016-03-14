@@ -48,6 +48,7 @@ class ContractorController extends Controller
         $password = bcrypt($request->input('password'));
         $email = $request->input('email');
         $mobile = $request->input('mobile');
+        $status = $request->input('status');
 
         $newContractor = new User();
 
@@ -55,6 +56,7 @@ class ContractorController extends Controller
         $newContractor->password = $password;
         $newContractor->email = $email;
         $newContractor->mobile = $mobile;
+        $newContractor->status = $status;
 
         $newContractor->save();
 
@@ -113,7 +115,7 @@ class ContractorController extends Controller
 
         $user->save();
 
-        return Redirect::route('contractors.index');
+        return Redirect::route('contractors.show', [$user->id]);
     }
 
     /**
