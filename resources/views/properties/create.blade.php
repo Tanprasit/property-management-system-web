@@ -8,44 +8,31 @@
 <div class="row">    
     <h1 class="page-header">Create Properties</h1>
     <div class="col-lg-6">
-        <form method="POST" action="/contractors">
+        <form method="POST" action="/properties">
             {!! csrf_field() !!}
             <div class="form-group col-lg-12">
-                <label>Full Name</label>
-                <input type="text" name="full_name" class="form-control" value="">
-            </div>
-
-            <div class="form-group col-lg-6">
-                <label>Password</label>
-                <input type="password" name="password" class="form-control" value="">
-            </div>
-
-            <div class="form-group col-lg-6">
-                <label>Repeat Password</label>
-                <input type="password" name="password" class="form-control" value="">
-            </div>
-
-            <div class="form-group col-lg-6">
-                <label>Email</label>
-                <input type="text" name="email" class="form-control" value="">
-            </div>
-
-            <div class="form-group col-lg-6">
-                <label>Repeat Email</label>
-                <input type="text" name="email" class="form-control" value="">
+                <label>Address Line 1</label>
+                <input type="text" name="address_line_1" class="form-control" value="">
             </div>
 
             <div class="form-group col-lg-12">
-                <label>Mobile</label>
-                <input type="text" name="mobile" class="form-control" value="">
+                <label>Address Line 2</label>
+                <input type="text" name="address_line_2" class="form-control" value="">
             </div>
 
-            <div class="form-group col-lg-12">
-                <label>Role</label>
-                <select class="form-control" name="status">
-                    <option>Admin</option>
-                    <option>Contractor</option>
-                </select>
+            <div class="form-group col-lg-6">
+                <label>City</label>
+                <input type="text" name="city" class="form-control" value="">
+            </div>
+
+            <div class="form-group col-lg-6">
+                <label>County</label>
+                <input type="text" name="county" class="form-control" value="">
+            </div>
+
+            <div class="form-group col-lg-6">
+                <label>Postcode</label>
+                <input type="text" name="postcode" class="form-control" value="">
             </div>
 
             <div class="form-group col-lg-12">

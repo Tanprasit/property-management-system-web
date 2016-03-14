@@ -12,11 +12,19 @@
 // Routes within this group will have access to sessions and  csrf protection.
 Route::group(['middleware' => ['web']], function () {
     Route::get('/', function () {
-        return view('auth.login');
+        if (Auth::check()) {
+            return Redirect::route('properties.index');
+        } else {
+            return view('auth.login');
+        }
     });
 
     Route::get('/login', function () {
-        return view('auth.login');
+        if (Auth::check()) {
+            return Redirect::route('properties.index');
+        } else {
+            return view('auth.login');
+        }
     });
 
     // Routes that requires authentication from the user.
