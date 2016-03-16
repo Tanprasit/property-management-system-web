@@ -15,7 +15,7 @@
     <div class="col-lg-12">
         <div class="panel panel-default">
         <div class="panel-heading clearfix">
-          <b>Property List</b>
+          <b>Properties List</b>
           <div class="btn-group pull-right">
               <a href="{{ URL::route('properties.create') }}" class="btn btn-primary ">Add Property</a>
           </div>

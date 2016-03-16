@@ -15,7 +15,7 @@
     <div class="col-lg-12">
         <div class="panel panel-default">
         <div class="panel-heading clearfix">
-          <b>Notification List</b>
+          <b>Notifications List</b>
           <div class="btn-group pull-right">
               <a href="{{ URL::route('notifications.create') }}" class="btn btn-primary ">Add Notification</a>
           </div>
@@ -26,9 +26,8 @@
                   <thead>
                       <tr>
                          <th>Title</th>
-                         <th>Type</th>
-                         <th>Notes</th>
-                         <th>Options</th>
+                         <th width="50%">Type</th>
+                         <th width="15%">Options</th>
                       </tr>
                   </thead>
                   <tbody>
@@ -36,7 +35,6 @@
                       <tr class="clickable-row" href="{{ URL::route('notifications.show', [$notification->id]) }}" onmouseover="this.style.cursor='pointer'" >
                           <td>{{ $notification->title }}</td>
                           <td>{{ $notification->type }}</td>
-                          <td>{{ $notification->notes }}</td>
                           <td>
                               <form method="POST" action="{{ URL::route('notifications.destroy', [$notification->id]) }}">
                                   {{ method_field('DELETE') }}
