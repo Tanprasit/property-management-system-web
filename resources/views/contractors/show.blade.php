@@ -6,35 +6,40 @@
 
 @section('content')
 <h1 class="page-header">Contractor Details</h1>
-<div class="col-lg-6">
-    <div class="form-group col-lg-12">
-        <label>Full Name</label>
-        <input type="text" name="full_name" class="form-control" value="{{ $contractor->full_name }}" readonly="readlonly">
+<div class="panel panel-default">
+    <div class="panel-heading clearfix">
+        <b class="pull-left">Last Updated: {{ $contractor->getUpdatedAt() }}</b>
     </div>
+    <div class="panel-body">
+        <form class="form-horizontal">
+            <div class="form-group">
+                <label class="col-lg-4 control-label">Full Name</label>
+                <div class="col-lg-6">
+                    <input type="text" name="full_name" class="form-control" value="{{ $contractor->full_name }}" readonly="readlonly">
+                </div>
+            </div>
 
-    <div class="form-group col-lg-12">
-        <label>Email</label>
-        <input type="text" name="email" class="form-control" value="{{ $contractor->email }}" readonly="readlonly">
+            <div class="form-group">
+                <label class="col-lg-4 control-label">Email</label>
+                <div class="col-lg-6">
+                    <input type="text" name="email" class="form-control" value="{{ $contractor->email }}" readonly="readlonly">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-lg-4 control-label">Mobile</label>
+                <div class="col-lg-6">
+                    <input type="text" name="mobile" class="form-control" value="{{ $contractor->mobile }}" readonly="readlonly">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-lg-4 control-label">Role</label>
+                <div class="col-lg-6">
+                    <input type="text" name="status" class="form-control" value="{{ $contractor->status }}" readonly="readlonly">
+                </div>
+            </div>
+        </form>
     </div>
-
-    <div class="form-group col-lg-12">
-        <label>Mobile</label>
-        <input type="text" name="mobile" class="form-control" value="{{ $contractor->mobile }}" readonly="readlonly">
-    </div>
-
-    <div class="form-group col-lg-12">
-        <label>Role</label>
-        <input type="text" name="status" class="form-control" value="{{ $contractor->status }}" readonly="readlonly">
-    </div>
-</div>
-<div class="col-lg-6">
-    <h2>Terms and Conditions</h2>
-    <p>By clicking on "Register" you agree to The Company's' Terms and Conditions</p>
-
-   <p>While rare, prices are subject to change based on exchange rate fluctuations - should such a fluctuation happen, we may request an additional payment. You have the option to request a full refund or to pay the new price. (Paragraph 13.5.8)</p>
-
-    <p>Should there be an error in the description or pricing of a product, we will provide you with a full refund (Paragraph 13.5.6)</p>
-
-    <p>Acceptance of an order by us is dependent on our suppliers ability to provide the product. (Paragraph 13.5.6)</p>
 </div>
 @stop

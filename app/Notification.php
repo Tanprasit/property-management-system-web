@@ -38,4 +38,9 @@ class Notification extends Model implements JsonSerializable
             'data' => $this->data
         ];
     }
+
+    //Get human readable updated time
+    public function getUpdatedAt() {
+        return $this->updated_at->diffForHumans();
+    }
 }

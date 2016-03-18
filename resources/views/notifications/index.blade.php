@@ -15,7 +15,7 @@
     <div class="col-lg-12">
         <div class="panel panel-default">
         <div class="panel-heading clearfix">
-          <b>Notifications List</b>
+          <b>NOTIFICATION LIST</b>
           <div class="btn-group pull-right">
               <a href="{{ URL::route('notifications.create') }}" class="btn btn-primary ">Add Notification</a>
           </div>

@@ -37,7 +37,8 @@ CKEDITOR.editorConfig = function( config ) {
 	config.removeDialogTabs = 'image:advanced;link:advanced';
 
 	// Adjust the height of the editor textarea
-	config.height = 500;
+	config.height = '842px';
+	config.width = '595px';
 
 	// Enable save button
 	config.extraPlugins = 'save';

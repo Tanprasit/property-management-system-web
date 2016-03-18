@@ -5,7 +5,41 @@
 @stop
 
 @section('content')
-    <?php echo $notification->data ?>
+<h1 class="page-header">Notification Details</h1>
+<div class="row">
+    <div class="col-lg-5">
+        <div class="panel panel-default">
+            <div class="panel-heading clearfix">
+                <b>Last Updated: {{ $notification->getUpdatedAt() }}</b>
+                <a class="btn btn-primary pull-right" href="{{ URL::route('notifications.edit', $notification->id) }}">Edit</a>
+            </div>
+            <div class="panel-body">
+                <div class="form-group col-lg-12">
+                    <label>Title</label>
+                    <input  id="title" class="form-control" type="text" name="title" class="form-control" value="{{ $notification->title }}" readonly="readlonly">
+                </div>
+                <div class="form-group col-lg-12">
+                    <label>Type</label>
+                    <input id="type" class="form-control" type="text" name="type" class="form-control" value="{{ $notification->type }}" readonly="readlonly">
+                </div>
+                <div class="form-group col-lg-12">
+                    <label>Notes</label>
+                    <textarea id="notes" class="form-control" readonly="readlonly">{{$notification->notes }}</textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-7">
+        <div class="panel panel-default notification-panel">
+            <div class="panel-heading clearfix">
+                <b>Notification Preview</b>
+            </div>
+            <div class="panel-body">
+              <?php echo $notification->data ?>  
+            </div>
+        </div>
+    </div>
+</div>
 @stop
 
 @section('scripts')

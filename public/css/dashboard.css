@@ -111,3 +111,11 @@ Vertically align texts in panel headers
 .panel-heading {
   line-height:32px;
 }
+
+.notification-panel {
+  height: 842px;
+  width: 595px;
+  /* to centre page on screen*/
+  margin-left: auto;
+  margin-right: auto;
+}

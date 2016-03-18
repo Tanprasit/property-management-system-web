@@ -9,94 +9,93 @@
   <h1 class="page-header">Property Details</h1>
   <div class="panel panel-default">
     <div class="panel-heading clearfix">
+          <b>Last Updated: {{ $property->getUpdatedAt() }}</b>
           <a class="btn btn-primary pull-right" href="{{ URL::route('properties.edit', $property->id) }}">Edit</a>
     </div>
     <div class="panel-body">
-      <div class="col-lg-6">
-          <div class="form-group col-lg-12">
-              <label>Address Line 1</label>
-              <input type="text" name="address_line_1" class="form-control" value="{{ $property->address_line_1 }}" readonly="readlonly">
+      <form class="form-horizontal">
+          <div class="form-group">
+              <label class="col-lg-4 control-label">Address Line 1</label>
+              <div class="col-lg-6">
+                <input type="text" name="address_line_1" class="form-control" value="{{ $property->address_line_1 }}" readonly="readlonly">
+              </div>
           </div>
 
-          <div class="form-group col-lg-12">
-              <label>Address Line 2</label>
-              <input type="text" name="address_line_2" class="form-control" value="{{ $property->address_line_2 }}" readonly="readlonly">
+          <div class="form-group">
+              <label class="col-lg-4 control-label">Address Line 2</label>
+              <div class="col-lg-6">
+                <input type="text" name="address_line_2" class="form-control" value="{{ $property->address_line_2 }}" readonly="readlonly">
+              </div>
           </div>
 
-          <div class="form-group col-lg-12">
-              <label>City</label>
-              <input type="text" name="city" class="form-control" value="{{ $property->city }}" readonly="readlonly">
+          <div class="form-group">
+              <label class="col-lg-4 control-label">City</label>
+              <div class="col-lg-6">
+                <input type="text" name="city" class="form-control" value="{{ $property->city }}" readonly="readlonly">
+              </div>
           </div>
 
-          <div class="form-group col-lg-12">
-              <label>County</label>
-              <input type="text" name="county" class="form-control" value="{{ $property->county }}" readonly="readlonly">
+          <div class="form-group">
+              <label class="col-lg-4 control-label">County</label>
+              <div class="col-lg-6">
+                <input type="text" name="county" class="form-control" value="{{ $property->county }}" readonly="readlonly">
+              </div>
           </div>
 
-          <div class="form-group col-lg-12">
-              <label>Postcode</label>
-              <input type="text" name="postcode" class="form-control" value="{{ $property->postcode }}" readonly="readlonly">
+          <div class="form-group">
+              <label class="col-lg-4 control-label">Postcode</label>
+              <div class="col-lg-6">
+                <input type="text" name="postcode" class="form-control" value="{{ $property->postcode }}" readonly="readlonly">
+              </div>
           </div>
-      </div>
-      <div class="col-lg-6">
-        <div class="col-lg-12">
-           <h2>Terms and Conditions</h2>
-           <p>By clicking on "Register" you agree to The Company's' Terms and Conditions</p>
-
-          <p>While rare, prices are subject to change based on exchange rate fluctuations - should such a fluctuation happen, we may request an additional payment. You have the option to request a full refund or to pay the new price. (Paragraph 13.5.8)</p>
-
-           <p>Should there be an error in the description or pricing of a product, we will provide you with a full refund (Paragraph 13.5.6)</p>
-
-           <p>Acceptance of an order by us is dependent on our suppliers ability to provide the product. (Paragraph 13.5.6)</p>
-        </div>
-      </div>
+      </form>
     </div>
   </div>
 </div>
 <!-- Second table for displaying all devices connected to current property -->
 <div class="row">
-        <h2 class="page-header">Connected Devices</h2>
-        <div class="panel panel-default">
-        <div class="panel-heading clearfix">
-          <div class="btn-group pull-right ">
-              <button class="btn btn-primary" data-target="#addDeviceModal"  data-toggle="modal">Add Device</button>
-          </div>
-         </div>
-          <div class="panel-body">
-            <div class="table-responsive">
-              <table id="devices-table" class="display nowrap" cellspacing="0" width="100%">
-                  <thead>
-                      <tr>
-                          <th>Model</th>
-                          <th>Manufactorer</th>
-                          <th>Product</th>
-                          <th>SDK Version</th>
-                          <th>Serial Number</th>
-                      <th>Options</th>
-                      </tr>
-                  </thead>
-                  <tbody>
-                    @foreach ($property->devices as $device)
-                        <tr class="clickable-row"  href="{{ URL::route('devices.show', [$device->id]) }}" onmouseover="this.style.cursor='pointer'">
-                            <td>{{ $device->model }}</td>
-                            <td>{{ $device->manufactorer }}</td>
-                            <td>{{ $device->product }}</td>
-                            <td>{{ $device->sdk_version }}</td>
-                            <td>{{ $device->serial_number }}</td>
-                            <td>
-                                <form method="POST" action="/properties/{{ $property->id }}/removeDevice">
-                                  <input type="hidden" name="device_id" value="{{ $device->id }}"></input>
-                                    {!! csrf_field() !!}
-                                    <button class="btn btn-danger" type="submit">Remove</button>
-                                </form>
-                            </td>
-                        </tr>
-                  @endforeach
-                </tbody>
-              </table>
-            </div>
-          </div>
-      </div>
+  <h2 class="page-header">Connected Devices</h2>
+  <div class="panel panel-default">
+    <div class="panel-heading clearfix">
+      <b class="pull-left">DEVICE LIST</b>
+      <button class="btn btn-primary pull-right" data-target="#addDeviceModal"  data-toggle="modal">Add Device</button>
+    </div>
+    <div class="panel-body">
+    <div class="table-responsive">
+    <table id="devices-table" class="display nowrap" cellspacing="0" width="100%">
+      <thead>
+        <tr>
+          <th>Model</th>
+          <th>Manufactorer</th>
+          <th>Product</th>
+          <th>SDK Version</th>
+          <th>Serial Number</th>
+          <th>Options</th>
+        </tr>
+      </thead>
+      <tbody>
+        @foreach ($property->devices as $device)
+        <tr class="clickable-row"  href="{{ URL::route('devices.show', [$device->id]) }}" onmouseover="this.style.cursor='pointer'">
+          <td>{{ $device->model }}</td>
+          <td>{{ $device->manufactorer }}</td>
+          <td>{{ $device->product }}</td>
+          <td>{{ $device->sdk_version }}</td>
+          <td>{{ $device->serial_number }}</td>
+          <td>
+          <form method="POST" action="/properties/{{ $property->id }}/removeDevice">
+            <input type="hidden" name="device_id" value="{{ $device->id }}"></input>
+            {!! csrf_field() !!}
+            <a class="btn btn-primary" href="{{ URL::route('devices.edit', $device->id) }}">Edit</a>
+            <button class="btn btn-danger" type="submit">Remove</button>
+          </form>
+          </td>
+        </tr>
+        @endforeach
+      </tbody>
+    </table>
+    </div>
+    </div>
+  </div>
 </div>
 
 <!-- Modal -->

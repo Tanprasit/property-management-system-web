@@ -7,28 +7,37 @@
 @section('content')
 <h1 class="page-header">Edit Notification / <a href="{{ URL::route('notifications.show', [$notification->id]) }}">{{ $notification->id }}</a></h1>
 <div class="row">
-    <div class="col-lg-6">
-        <form>
-            <meta name="notification-id" content="{{ $notification->id }}">
-            <meta name="csrf-token" content="{{ csrf_token() }}">
-            <div class="form-group col-lg-12">
-                <label>Title</label>
-                <input  id="title" class="form-control" type="text" name="title" class="form-control" value="{{ $notification->title }}">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading clearfix">
+                <b>Last Updated: {{ $notification->getUpdatedAt() }}</b>
+                
             </div>
-            <div class="form-group col-lg-12">
-                <label>Type</label>
-                <input id="type" class="form-control" type="text" name="type" class="form-control" value="{{ $notification->type }}">
+            <div class="panel-body">
+                <form class="form-horizontal">
+                    <meta name="notification-id" content="{{ $notification->id }}">
+                    <meta name="csrf-token" content="{{ csrf_token() }}">
+                    <div class="form-group">
+                        <label class="col-lg-4 control-label">Title</label>
+                        <div class="col-lg-6">
+                            <input  id="title" class="form-control" type="text" name="title" class="form-control" value="{{ $notification->title }}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-4 control-label">Type</label>
+                        <div class="col-lg-6">
+                            <input id="type" class="form-control" type="text" name="type" class="form-control" value="{{ $notification->type }}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-4 control-label">Notes</label>
+                        <div class="col-lg-6">
+                            <textarea id="notes" class="form-control">{{ $notification->notes }}</textarea>
+                        </div>
+                    </div>
+                </form>
             </div>
-            <div class="form-group col-lg-12">
-                <label>Notes</label>
-                <textarea id="notes" class="form-control">{{ $notification->notes }}</textarea>
-            </div>
-        </form>
-    </div>
-    <div class="col-lg-6">
-        <p>Please provide the a title, type and notes for a notification. They will be submitted along with the body of the notification below.</p>
-        <p>You can modify the look of a single notification page. You can add images via URIs and modify it's configurations ie alternate text, width and height</p>
-        <p>Once you satified with the content hit the 'save button'</p>
+        </div>
     </div>
 </div>
 <div class="row">

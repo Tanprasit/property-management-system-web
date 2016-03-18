@@ -34,4 +34,9 @@ class User extends Authenticatable
     public function devices() {
         return $this->morphToMany('App\Device', 'deviceable');
     }
+
+    //Get human readable updated time
+    public function getUpdatedAt() {
+        return $this->updated_at->diffForHumans();
+    }
 }

@@ -15,7 +15,7 @@
     <div class="col-lg-12">
         <div class="panel panel-default">
         <div class="panel-heading clearfix">
-          <b class="abc">Devices List</h3>
+          <b class="abc">DEVICES LIST</h3>
           <div class="btn-group pull-right ">
               <a href="{{ URL::route('devices.create') }}" class="btn btn-primary ">Add Device</a>
           </div>

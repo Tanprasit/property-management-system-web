@@ -15,7 +15,7 @@
     <div class="col-lg-12">
         <div class="panel panel-default">
         <div class="panel-heading clearfix">
-           <b>Contractors List</b>
+           <b>CONTRACTOR LIST</b>
              <div class="btn-group pull-right">
               <a href="{{ URL::route('contractors.create') }}" class="btn btn-primary ">Add Contractor</a>
             </div>

@@ -54,4 +54,9 @@ class Device extends Model implements JsonSerializable
             'notificationsList' => $this->notifications()->get()
         ];
     }
+
+    //Get human readable updated time
+    public function getUpdatedAt() {
+        return $this->updated_at->diffForHumans();
+    }
 }

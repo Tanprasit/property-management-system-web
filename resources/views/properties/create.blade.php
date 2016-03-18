@@ -6,56 +6,165 @@
 
 @section('content')
 <div class="row">    
-    <h1 class="page-header">Create Properties</h1>
+    <h1 class="page-header">Create Property</h1>
     <div class="panel panel-default">        
         <div class="panel-heading clearfix">
-            <b>Property details</b>
+            <b>ADDRESS INFORMATION</b>
             <label class="btn btn-primary pull-right" for="form-submit" >Submit</label>
         </div>
         <div class="panel-body">
-            <div class="col-lg-6">
-                <form method="POST" action="/properties" autocomplete="off">
-                    {!! csrf_field() !!}
-                    <div class="form-group col-lg-12">
-                        <label>Address Line 1</label>
+            <form class="form-horizontal" method="POST" action="/properties" autocomplete="off">
+                {!! csrf_field() !!}
+                <div class="form-group">
+                    <label class="col-lg-4 control-label">Address Line 1</label>
+                    <div class="col-lg-6">
                         <input type="text" name="address_line_1" class="form-control" value="">
                     </div>
+                </div>
 
-                    <div class="form-group col-lg-12">
-                        <label>Address Line 2</label>
+                <div class="form-group">
+                    <label class="col-lg-4 control-label">Address Line 2</label>
+                    <div class="col-lg-6">
                         <input type="text" name="address_line_2" class="form-control" value="">
                     </div>
+                </div>
 
-                    <div class="form-group col-lg-6">
-                        <label>City</label>
+                <div class="form-group">
+                    <label class="col-lg-4 control-label">City</label>
+                    <div class="col-lg-6">
                         <input type="text" name="city" class="form-control" value="">
                     </div>
+                </div>
 
-                    <div class="form-group col-lg-6">
-                        <label>County</label>
-                        <input type="text" name="county" class="form-control" value="">
+                <div class="form-group">
+                    <label class="col-lg-4 control-label">County</label>
+                    <div class="col-lg-6">
+                        <select class="form-control" name="county">
+                            <optgroup label="England">
+                                <option>Bedfordshire</option>
+                                <option>Berkshire</option>
+                                <option>Bristol</option>
+                                <option>Buckinghamshire</option>
+                                <option>Cambridgeshire</option>
+                                <option>Cheshire</option>
+                                <option>City of London</option>
+                                <option>Cornwall</option>
+                                <option>Cumbria</option>
+                                <option>Derbyshire</option>
+                                <option>Devon</option>
+                                <option>Dorset</option>
+                                <option>Durham</option>
+                                <option>East Riding of Yorkshire</option>
+                                <option>East Sussex</option>
+                                <option>Essex</option>
+                                <option>Gloucestershire</option>
+                                <option>Greater London</option>
+                                <option>Greater Manchester</option>
+                                <option>Hampshire</option>
+                                <option>Herefordshire</option>
+                                <option>Hertfordshire</option>
+                                <option>Isle of Wight</option>
+                                <option>Kent</option>
+                                <option>Lancashire</option>
+                                <option>Leicestershire</option>
+                                <option>Lincolnshire</option>
+                                <option>Merseyside</option>
+                                <option>Norfolk</option>
+                                <option>North Yorkshire</option>
+                                <option>Northamptonshire</option>
+                                <option>Northumberland</option>
+                                <option>Nottinghamshire</option>
+                                <option>Oxfordshire</option>
+                                <option>Rutland</option>
+                                <option>Shropshire</option>
+                                <option>Somerset</option>
+                                <option>South Yorkshire</option>
+                                <option>Staffordshire</option>
+                                <option>Suffolk</option>
+                                <option>Surrey</option>
+                                <option>Tyne and Wear</option>
+                                <option>Warwickshire</option>
+                                <option>West Midlands</option>
+                                <option>West Sussex</option>
+                                <option>West Yorkshire</option>
+                                <option>Wiltshire</option>
+                                <option>Worcestershire</option>
+                            </optgroup>
+                            <optgroup label="Wales">
+                                <option>Anglesey</option>
+                                <option>Brecknockshire</option>
+                                <option>Caernarfonshire</option>
+                                <option>Carmarthenshire</option>
+                                <option>Cardiganshire</option>
+                                <option>Denbighshire</option>
+                                <option>Flintshire</option>
+                                <option>Glamorgan</option>
+                                <option>Merioneth</option>
+                                <option>Monmouthshire</option>
+                                <option>Montgomeryshire</option>
+                                <option>Pembrokeshire</option>
+                                <option>Radnorshire</option>
+                            </optgroup>
+                            <optgroup label="Scotland">
+                                <option>Aberdeenshire</option>
+                                <option>Angus</option>
+                                <option>Argyllshire</option>
+                                <option>Ayrshire</option>
+                                <option>Banffshire</option>
+                                <option>Berwickshire</option>
+                                <option>Buteshire</option>
+                                <option>Cromartyshire</option>
+                                <option>Caithness</option>
+                                <option>Clackmannanshire</option>
+                                <option>Dumfriesshire</option>
+                                <option>Dunbartonshire</option>
+                                <option>East Lothian</option>
+                                <option>Fife</option>
+                                <option>Inverness-shire</option>
+                                <option>Kincardineshire</option>
+                                <option>Kinross</option>
+                                <option>Kirkcudbrightshire</option>
+                                <option>Lanarkshire</option>
+                                <option>Midlothian</option>
+                                <option>Morayshire</option>
+                                <option>Nairnshire</option>
+                                <option>Orkney</option>
+                                <option>Peeblesshire</option>
+                                <option>Perthshire</option>
+                                <option>Renfrewshire</option>
+                                <option>Ross-shire</option>
+                                <option>Roxburghshire</option>
+                                <option>Selkirkshire</option>
+                                <option>Shetland</option>
+                                <option>Stirlingshire</option>
+                                <option>Sutherland</option>
+                                <option>West Lothian</option>
+                                <option>Wigtownshire</option>
+                            </optgroup>
+                            <optgroup label="Northern Ireland">
+                                <option>Antrim</option>
+                                <option>Armagh</option>
+                                <option>Down</option>
+                                <option>Fermanagh</option>
+                                <option>Londonderry</option>
+                                <option>Tyrone</option>
+                            </optgroup>
+                        </select>
                     </div>
+                </div>
 
-                    <div class="form-group col-lg-6">
-                        <label>Postcode</label>
+                <div class="form-group">
+                    <label class="col-lg-4 control-label">Postcode</label>
+                    <div class="col-lg-6">
                         <input type="text" name="postcode" class="form-control" value="">
+                        <small>e.g. BL0 7WS</small>
                     </div>
+                </div>
 
-                    <div class="form-group col-lg-12">
-                        <button id="form-submit" class="hidden" type="submit"/>
-                    </div>
-                </form>
-            </div>
-            <div class="col-lg-6">
-                <h2>Terms and Conditions</h2>
-                <p>By clicking on "Register" you agree to The Company's' Terms and Conditions</p>
-
-               <p>While rare, prices are subject to change based on exchange rate fluctuations - should such a fluctuation happen, we may request an additional payment. You have the option to request a full refund or to pay the new price. (Paragraph 13.5.8)</p>
-
-                <p>Should there be an error in the description or pricing of a product, we will provide you with a full refund (Paragraph 13.5.6)</p>
-
-                <p>Acceptance of an order by us is dependent on our suppliers ability to provide the product. (Paragraph 13.5.6)</p>
-            </div>
+                <div class="form-group">
+                    <button id="form-submit" class="hidden" type="submit"/>
+                </div>
+        </form>
         </div>
     </div>
 </div>
