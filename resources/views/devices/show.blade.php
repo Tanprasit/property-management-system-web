@@ -13,11 +13,12 @@
         <a class="btn btn-primary pull-right" href="{{ URL::route('devices.edit', $device->id) }}">Edit</a>
       </div>
       <div class="panel-body">
+      <!-- Device Information -->
         <form class="form-horizontal">
           <div class="form-group">
               <label class="col-lg-4 control-label">Model</label>
               <div class="col-lg-6">
-                <input type="text" name="model" class="form-control" value="{{ $device->model }}" readonly="readonly">
+                <input id="device" type="text" name="model" class="form-control" value="{{ $device->model }}" readonly="readonly">
               </div>
           </div>
 
@@ -53,6 +54,37 @@
   </div>
 </div>
 
+<!-- Last known location of connected device -->
+<div class="row">
+    <h2>Device Location</h2>
+    <div class="panel panel-default ">
+      <div class="panel-heading">
+        <b>GPS LOCATION</b>
+        <a class="btn btn-primary pull-right" href="{{ URL::route('devices.edit', $device->id) }}">Edit</a>
+      </div>
+      <div class="panel-body">
+        <div id="map" class="col-lg-6">
+        </div>
+        <div class="col-lg-6">
+          <form class="form-horizontal">
+            <div class="form-group">
+                <label class="col-lg-4 control-label">Latitude</label>
+                <div class="col-lg-6">
+                  <input id="lat" type="text" name="serial_number" class="form-control" value="{{ $device->latitude }}" readonly="readonly">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-4 control-label">Longitude</label>
+                <div class="col-lg-6">
+                  <input id="long" type="text" name="serial_number" class="form-control" value="{{ $device->longitude }}" readonly="readonly">
+                </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+</div>
+
 <div class="row">
     <!-- Second table for displaying all notifications connected to current device -->
       <h2 class=" ">Connected Notifications</h2>
@@ -62,7 +94,7 @@
               <div class="panel-heading clearfix">
                 <b>NOTIFICATION LIST</b>
                 <div class="btn-group pull-right ">
-                    <button class="btn btn-primary" data-target="#addDeviceModal"  data-toggle="modal">Add Notififcation</button>
+                  <button class="btn btn-primary" data-target="#addDeviceModal"  data-toggle="modal">Add Notififcation</button>
                 </div>
                </div>
                 <div class="panel-body">
@@ -130,18 +162,24 @@
  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.11/css/jquery.dataTables.min.css">
  @stop
 
+<!-- Prevents API requests to Google if lat long is null -->
  @section('scripts')
- <script type="text/javascript" src="/lib/datatables.min.js"></script>
- <script type="text/javascript">
-     $(document).ready(function() {
-         // Add links to each devices details page.
-         $('.clickable-row').click(function() {
-           window.document.location = $(this).attr("href");
-         });
+<script type="text/javascript" src="/lib/datatables.min.js"></script>
+@if(0 != $device->latitude &&  0 != $device->longitude) 
+  <script type="text/javascript" src="/lib/gmaps.js"></script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?v=3&key=AIzaSyAqI6U4Eq8fXrBX2HTpSgq4pQE3-6SnMtY&callback=initMap"></script>
+@endif
 
-         $('#devices-table').DataTable( {
-             "scrollX":true
-         });
-     } );
- </script>
+<script type="text/javascript">
+ $(document).ready(function() {
+   // Add links to each devices details page.
+   $('.clickable-row').click(function() {
+     window.document.location = $(this).attr("href");
+   });
+
+   $('#devices-table').DataTable( {
+       "scrollX":true
+   });
+ } );
+</script>
  @stop

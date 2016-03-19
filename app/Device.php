@@ -18,6 +18,8 @@ class Device extends Model implements JsonSerializable
         'product',
         'sdk_version',
         'serial_number',
+        'latitude',
+        'longitude'
     ];
 
     /**
@@ -51,6 +53,8 @@ class Device extends Model implements JsonSerializable
             'product' => $this->product,
             'sdk_version' => $this->sdk_version,
             'serial_number' => $this->serial_number,
+            'latitude' => $this->latitude,
+            'longitude' => $this->longitude,
             'notificationsList' => $this->notifications()->get()
         ];
     }

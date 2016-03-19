@@ -50,6 +50,22 @@
                     </div>
                 </div>
 
+                <hr class="row">
+
+                  <div class="form-group">
+                      <label class="col-lg-4 control-label">Latitude</label>
+                      <div class="col-lg-6">
+                        <input id="lat" type="text" name="latitude" class="form-control" value="">
+                      </div>
+                  </div>
+
+                  <div class="form-group">
+                      <label class="col-lg-4 control-label">Longitude</label>
+                      <div class="col-lg-6">
+                        <input id="long" type="text" name="longitude" class="form-control" value="">
+                      </div>
+                  </div>
+
                 <div class="form-group col-lg-12">
                     <button id="form-submit" class="hidden" type="submit"/>
                 </div>

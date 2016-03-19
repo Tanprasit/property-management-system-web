@@ -52,6 +52,8 @@ class DeviceController extends Controller
         $product = $request->Input('product');
         $sdk_version = $request->Input('sdk_version');
         $serial_number = $request->Input('serial_number');
+        $latitude = $request->Input('latitude');
+        $longitude = $request->Input('longitude');
 
         $newDevice = new Device();
 
@@ -60,6 +62,8 @@ class DeviceController extends Controller
         $newDevice->product = $product;
         $newDevice->sdk_version = $sdk_version;
         $newDevice->serial_number = $serial_number;
+        $newDevice->latitude = $latitude;
+        $newDevice->longitude = $longitude;
 
         $newDevice->save();
 
@@ -113,12 +117,16 @@ class DeviceController extends Controller
         $product = $request->Input('product');
         $sdk_version = $request->Input('sdk_version');
         $serial_number = $request->Input('serial_number');
+        $latitude = $request->Input('latitude');
+        $longitude = $request->Input('longitude');
 
         $device->model = $model;
         $device->manufacturer = $manufacturer;
         $device->product = $product;
         $device->sdk_version = $sdk_version;
         $device->serial_number = $serial_number;
+        $device->latitude = $latitude;
+        $device->longitude =$longitude;
 
         $device->save();
 
@@ -173,6 +181,8 @@ class DeviceController extends Controller
         $product = $request->Input('product');
         $sdk_version = $request->Input('sdk_version');
         $serial_number = $request->Input('serial_number');
+        $latitude = $request->Input('latitude');
+        $longitude = $request->input('longitude');
 
         // Check if serial number exists in database
         $newDevice = Device::where('serial_number', '=', $serial_number)->first();
@@ -185,6 +195,8 @@ class DeviceController extends Controller
             $newDevice->product = $product;
             $newDevice->sdk_version = $sdk_version;
             $newDevice->serial_number = $serial_number;
+            $newDevice->latitude = $latitude;
+            $newDevice->longitude = $longitude;
 
             $newDevice->save();
         } 
