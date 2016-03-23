@@ -39,8 +39,6 @@
             </div>
         </div>
     </div>
-</div>
-<div class="row">
     <div class="col-lg-12">
         <form>
             <textarea name="advertArea" id="advertArea" rows="10" cols="80">

@@ -15,24 +15,30 @@
         <div class="panel-body">
             <form class="form-horizontal" method="POST" action="/properties" autocomplete="off">
                 {!! csrf_field() !!}
-                <div class="form-group">
+                <div class="form-group has-feedback">
                     <label class="col-lg-4 control-label">Address Line 1</label>
-                    <div class="col-lg-6">
-                        <input type="text" name="address_line_1" class="form-control" value="">
+                    <div class="col-lg-6 input-container">
+                        <input id="address_line_1" type="text" name="address_line_1" class="form-control" value="">
+                        <span class="glyphicon glyphicon-ok form-control-feedback hidden" aria-hidden="true"></span>
+                        <span class="glyphicon glyphicon-remove form-control-feedback hidden" aria-hidden="true"></span>
                     </div>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group has-feedback">
                     <label class="col-lg-4 control-label">Address Line 2</label>
-                    <div class="col-lg-6">
-                        <input type="text" name="address_line_2" class="form-control" value="">
+                    <div class="col-lg-6 input-container">
+                        <input id="address_line_2" type="text" name="address_line_2" class="form-control" value="">
+                        <span class="glyphicon glyphicon-ok form-control-feedback hidden" aria-hidden="true"></span>
+                        <span class="glyphicon glyphicon-remove form-control-feedback hidden" aria-hidden="true"></span>
                     </div>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group has-feedback">
                     <label class="col-lg-4 control-label">City</label>
-                    <div class="col-lg-6">
-                        <input type="text" name="city" class="form-control" value="">
+                    <div class="col-lg-6 input-container">
+                        <input id="city" type="text" name="city" class="form-control" value="">
+                        <span class="glyphicon glyphicon-ok form-control-feedback hidden" aria-hidden="true"></span>
+                        <span class="glyphicon glyphicon-remove form-control-feedback hidden" aria-hidden="true"></span>
                     </div>
                 </div>
 
@@ -153,10 +159,12 @@
                     </div>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group has-feedback">
                     <label class="col-lg-4 control-label">Postcode</label>
-                    <div class="col-lg-6">
-                        <input type="text" name="postcode" class="form-control" value="">
+                    <div class="col-lg-6 input-container">
+                        <input id="postcode" type="text" name="postcode" class="form-control" value="">
+                        <span class="glyphicon glyphicon-ok form-control-feedback hidden" aria-hidden="true"></span>
+                        <span class="glyphicon glyphicon-remove form-control-feedback hidden" aria-hidden="true"></span>
                         <small>e.g. BL0 7WS</small>
                     </div>
                 </div>
@@ -168,4 +176,8 @@
         </div>
     </div>
 </div>
+@stop
+
+@section('scripts')
+<script type="text/javascript" src="/scripts/validation/properties/create.js"></script>
 @stop

@@ -7,30 +7,38 @@
 @section('content')
 <h1 class="page-header">Notification Details</h1>
 <div class="row">
-    <div class="col-lg-5">
+    <div class="col-lg-12">
         <div class="panel panel-default">
             <div class="panel-heading clearfix">
                 <b>Last Updated: {{ $notification->getUpdatedAt() }}</b>
                 <a class="btn btn-primary pull-right" href="{{ URL::route('notifications.edit', $notification->id) }}">Edit</a>
             </div>
             <div class="panel-body">
-                <div class="form-group col-lg-12">
-                    <label>Title</label>
-                    <input  id="title" class="form-control" type="text" name="title" class="form-control" value="{{ $notification->title }}" readonly="readlonly">
-                </div>
-                <div class="form-group col-lg-12">
-                    <label>Type</label>
-                    <input id="type" class="form-control" type="text" name="type" class="form-control" value="{{ $notification->type }}" readonly="readlonly">
-                </div>
-                <div class="form-group col-lg-12">
-                    <label>Notes</label>
-                    <textarea id="notes" class="form-control" readonly="readlonly">{{$notification->notes }}</textarea>
-                </div>
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-lg-4 control-label">Title</label>
+                        <div class="col-lg-6">
+                            <input  id="title" class="form-control" type="text" name="title" value="{{ $notification->title }}" readonly="readlonly">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-4 control-label">Type</label>
+                        <div class="col-lg-6">
+                            <input id="type" class="form-control" type="text" name="type" value="{{ $notification->type }}" readonly="readlonly">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-4 control-label">Notes</label>
+                        <div class="col-lg-6">
+                            <textarea id="notes" class="form-control" readonly="readlonly">{{$notification->notes }}</textarea>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
-    <div class="col-lg-7">
-        <div class="panel panel-default notification-panel">
+    <div class="col-lg-12">
+        <div class="panel panel-default notification-panel pull-left">
             <div class="panel-heading clearfix">
                 <b>Notification Preview</b>
             </div>

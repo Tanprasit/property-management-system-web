@@ -15,21 +15,25 @@
             <div class="panel-body">
                     <form class="form-horizontal" autocomplete="off">
                         <meta name="csrf-token" content="{{ csrf_token() }}">
-                        <div class="form-group">
+                        <div class="form-group has-feedback">
                             <label class="col-lg-4 control-label">Title</label>
-                            <div class="col-lg-6">
+                            <div class="col-lg-6 input-container">
                                 <input  id="title" class="form-control" type="text" name="title" class="form-control" value="">
+                                <span class="glyphicon glyphicon-ok form-control-feedback hidden" aria-hidden="true"></span>
+                                <span class="glyphicon glyphicon-remove form-control-feedback hidden" aria-hidden="true"></span>
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group has-feedback">
                             <label class="col-lg-4 control-label">Type</label>
-                            <div class="col-lg-6">
+                            <div class="col-lg-6 input-container">
                                 <input id="type" class="form-control" type="text" name="type" class="form-control" value="">
+                                <span class="glyphicon glyphicon-ok form-control-feedback hidden" aria-hidden="true"></span>
+                                <span class="glyphicon glyphicon-remove form-control-feedback hidden" aria-hidden="true"></span>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-lg-4 control-label">Notes</label>
-                            <div class="col-lg-6">
+                            <div class="col-lg-6 input-container">
                                 <textarea id="notes" class="form-control"></textarea>
                             </div>
                         </div>
@@ -88,4 +92,5 @@
     }
 });
 </script>
+<script type="text/javascript" src="/scripts/validation/notifications/create.js"></script>
 @stop
