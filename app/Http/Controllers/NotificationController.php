@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Contracts\Validation\Validator;
 
 use App\Notification;
 use Redirect;
@@ -45,6 +46,13 @@ class NotificationController extends Controller
     public function store(Request $request)
     {
         //
+        $this->validate($request, [
+            'title' => 'required',
+            'type' => 'required',
+            'notes' => '',
+            'data' => 'required'
+        ]);
+
         $title = $request->Input('title');        
         $notes = $request->Input('notes');
         $type = $request->Input('type');
@@ -102,6 +110,13 @@ class NotificationController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $this->validate($request, [
+            'title' => 'required',
+            'type' => 'required',
+            'notes' => '',
+            'data' => 'required'
+        ]);
+        
         $notification = Notification::find($id);
 
         $title = $request->Input('title');        

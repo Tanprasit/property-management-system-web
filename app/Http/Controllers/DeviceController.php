@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Contracts\Validation\Validator;
 
 use App\Device;
 use App\Notification;
@@ -47,6 +48,16 @@ class DeviceController extends Controller
     public function store(Request $request)
     {
         //
+        $this->validate($request, [
+            'model' => 'required',
+            'manufacturer' => 'required',
+            'product' => 'required',
+            'sdk_version' => 'required',
+            'serial_number' => 'required|unique:devices',
+            'latitude' => '',
+            'longitude' => ''
+        ]);
+
         $model = $request->Input('model');
         $manufacturer = $request->Input('manufacturer');
         $product = $request->Input('product');
@@ -110,6 +121,16 @@ class DeviceController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $this->validate($request, [
+            'model' => 'required',
+            'manufacturer' => 'required',
+            'product' => 'required',
+            'sdk_version' => 'required',
+            'serial_number' => 'required',
+            'latitude' => '',
+            'longitude' => ''
+        ]);
+
         $device = Device::find($id);
 
         $model = $request->Input('model');

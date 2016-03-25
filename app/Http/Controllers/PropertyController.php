@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Contracts\Validation\Validator;
 
 use App\Property;
 use App\Device;
@@ -45,7 +46,15 @@ class PropertyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validation
+        $this->validate($request, [
+            'address_line_1' => 'required',
+            'address_line_2' => '',
+            'city' =>'required',
+            'county' => 'required',
+            'postcode' => 'required'
+        ]);
+
         $address_line_1 = $request->Input('address_line_1');
         $address_line_2 = $request->Input('address_line_2');
         $city = $request->Input('city');
@@ -114,6 +123,14 @@ class PropertyController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $this->validate($request, [
+            'address_line_1' => 'required',
+            'address_line_2' => '',
+            'city' =>'required',
+            'county' => 'required',
+            'postcode' => 'required'
+        ]);
+
         $property = Property::find($id);
 
         $address_line_1 = $request->Input('address_line_1');

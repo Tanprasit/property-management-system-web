@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Contracts\Validation\Validator;
+
 use App\User;
 use Redirect;
 
@@ -44,6 +46,14 @@ class ContractorController extends Controller
     public function store(Request $request)
     {
         //
+        $this->validate($request, [
+            'full_name' => 'required',
+            'password' => 'required',
+            'email' => 'required|unique:users',
+            'mobile' =>'required',
+            'status' => 'required'
+        ]);
+
         $fullName = $request->input('full_name');
         $password = bcrypt($request->input('password'));
         $email = $request->input('email');
@@ -101,6 +111,13 @@ class ContractorController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $this->validate($request, [
+            'full_name' => 'required',
+            'email' => 'required',
+            'mobile' =>'required',
+            'status' => 'required'
+        ]);
+
         $user = User::find($id);
 
         $fullName = $request->input('full_name');

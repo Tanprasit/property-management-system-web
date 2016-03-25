@@ -58,15 +58,16 @@
       </div>
     </div>
       <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-      @if(Session::has('error'))
-      <div class="alert alert-danger">
-          {{ Sesson::get('error') }}
-        </div>
-      @elseif(Session::has('success'))
-        <div class="alert alert-success">
-          {{ Sesson::get('success') }}
-        </div>
-      @elseif(Session::has('message'))
+      @if (count($errors) > 0)
+          <div class="alert alert-danger">
+              <ul>
+                  @foreach ($errors->all() as $error)
+                      <li>{{ $error }}</li>
+                  @endforeach
+              </ul>
+          </div>
+      @endif
+      @if(Session::has('message'))
         <div class="alert alert-warning">
           {{ Sesson::get('message') }}
         </div>
