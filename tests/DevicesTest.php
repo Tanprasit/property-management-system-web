@@ -61,4 +61,5 @@ class DevicesTest extends TestCase
             ->visit($this->modelUrl . (String) $savedDevice->id )
             ->press('Delete')
             ->seePageIs($this->modelUrl);
-    }}
+    }
+}
