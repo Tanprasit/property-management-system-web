@@ -25,7 +25,7 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 $factory->define(App\Device::class, function(Faker\Generator $faker) {
     return [
         'model' => $faker->word,
-        'manufactorer' => $faker->word,
+        'manufacturer' => $faker->word,
         'sdk_version' => $faker->randomNumber($nbDigits = NULL),
         'product' => $faker->word,
         'serial_number' => str_random(12),

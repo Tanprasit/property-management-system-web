@@ -5,8 +5,9 @@ use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use App\User;
 
-class ContractorTest extends TestCase
-{  
+class ContractorsTest extends TestCase
+{
+
     use DatabaseTransactions;
 
     protected $modelUrl = '/contractors/';
@@ -53,7 +54,7 @@ class ContractorTest extends TestCase
 
         $this->actingAs($admin)
             ->withSession(['foo' => 'bar'])
-            ->visit($this->modelUrl . (String) $contractor->id )
+            ->visit($this->modelUrl . (String) $savedContractor->id )
             ->press('Delete')
             ->seePageIs($this->modelUrl);
     }
