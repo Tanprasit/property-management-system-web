@@ -10,7 +10,12 @@
     <div class="panel panel-default">
       <div class="panel-heading clearfix">
         <b class="pull-left">Last Updated: {{ $device->getUpdatedAt() }}</b>
-        <a class="btn btn-primary pull-right" href="{{ URL::route('devices.edit', $device->id) }}">Edit</a>
+        <form class="btn-toolbar pull-right" method="POST" action="{{ URL::route('devices.destroy', [$device->id]) }}">
+            {{ method_field('DELETE') }}
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+            <button class="btn btn-danger pull-right" type="submit">Delete</button>
+            <a class="btn btn-primary pull-right" href="{{ URL::route('devices.edit', $device->id) }}">Edit</a>
+        </form>
       </div>
       <div class="panel-body">
       <!-- Device Information -->
@@ -117,7 +122,7 @@
                                         {!! csrf_field() !!}
                                         <input type="hidden" name="notification_id" value="{{ $notification->id }}"></input>
                                         <a class="btn btn-primary" href="{{ URL::route('notifications.edit', [$notification->id] ) }}">Edit</a>
-                                        <button class="btn btn-danger" type="submit">Remove</button>
+                                        <button class="btn btn-danger" type="submit">Delete</button>
                                     </form>
                                 </td>
                             </tr>

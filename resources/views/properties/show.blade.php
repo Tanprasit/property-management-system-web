@@ -10,7 +10,12 @@
   <div class="panel panel-default">
     <div class="panel-heading clearfix">
           <b>Last Updated: {{ $property->getUpdatedAt() }}</b>
-          <a class="btn btn-primary pull-right" href="{{ URL::route('properties.edit', $property->id) }}">Edit</a>
+          <form class="btn-toolbar pull-right" method="POST" action="{{ URL::route('properties.destroy', [$property->id]) }}">
+              {{ method_field('DELETE') }}
+              <input type="hidden" name="_token" value="{{ csrf_token() }}">
+              <button class="btn btn-danger pull-right" type="submit">Delete</button>
+              <a class="btn btn-primary pull-right" href="{{ URL::route('properties.edit', $property->id) }}">Edit</a>
+          </form>
     </div>
     <div class="panel-body">
       <form class="form-horizontal">
@@ -86,7 +91,7 @@
             <input type="hidden" name="device_id" value="{{ $device->id }}"></input>
             {!! csrf_field() !!}
             <a class="btn btn-primary" href="{{ URL::route('devices.edit', $device->id) }}">Edit</a>
-            <button class="btn btn-danger" type="submit">Remove</button>
+            <button class="btn btn-danger" type="submit">Delete</button>
           </form>
           </td>
         </tr>

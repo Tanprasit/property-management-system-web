@@ -11,7 +11,12 @@
         <div class="panel panel-default">
             <div class="panel-heading clearfix">
                 <b>Last Updated: {{ $notification->getUpdatedAt() }}</b>
-                <a class="btn btn-primary pull-right" href="{{ URL::route('notifications.edit', $notification->id) }}">Edit</a>
+                <form class="btn-toolbar pull-right" method="POST" action="{{ URL::route('notifications.destroy', [$notification->id]) }}">
+                    {{ method_field('DELETE') }}
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                    <button class="btn btn-danger pull-right" type="submit">Delete</button>
+                    <a class="btn btn-primary pull-right" href="{{ URL::route('notifications.edit', $notification->id) }}">Edit</a>
+                </form>
             </div>
             <div class="panel-body">
                 <form class="form-horizontal">

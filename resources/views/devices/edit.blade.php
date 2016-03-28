@@ -10,6 +10,7 @@
     <div class="panel panel-default">
         <div class="panel-heading clearfix">
             <b>DEVICE INFORMATION</b>
+            
             <label class="btn btn-primary pull-right" for="form-submit">Submit</label>
         </div>
         <div class="panel-body">
