@@ -69,3 +69,5 @@ Route::group(['middleware' => ['digest']], function () {
     Route::post('api/v1/register/device/', 'DeviceController@apiRegister');
 }); 
 
+// API for login
+Route::post('api/v1/login', 'ContractorController@apiLogin');

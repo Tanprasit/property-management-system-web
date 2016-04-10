@@ -30,13 +30,27 @@ class User extends Authenticatable
         'status',
     ];
 
-    // Get devices for current user
+    // Get devices for current user.
     public function devices() {
         return $this->morphToMany('App\Device', 'deviceable');
+    }
+
+    // Get keys that belongs to current user.
+    public function keys() {
+        return $this->hasMany('App\Key');
     }
 
     //Get human readable updated time
     public function getUpdatedAt() {
         return $this->updated_at->diffForHumans();
+    }
+
+    public function JsonSerializable() {
+        return [
+            'full_name' => $this->full_name,
+            'email' => $this->email,
+            'status' => $this->status,
+            'mobile' => $this->mobile
+        ];
     }
 }

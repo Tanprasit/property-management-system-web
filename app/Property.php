@@ -32,9 +32,13 @@ class Property extends Model
         return $this->morphToMany('App\Device', 'deviceable');
     }
 
+    // Get all keys that belongs to this property.
+    public function keys() {
+        return $this->hasMany('App\Key');
+    }
+
     //Get human readable updated time
     public function getUpdatedAt() {
         return $this->updated_at->diffForHumans();
     }
-    
 }

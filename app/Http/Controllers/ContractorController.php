@@ -10,6 +10,7 @@ use Illuminate\Contracts\Validation\Validator;
 
 use App\User;
 use Redirect;
+use Illuminate\Support\Facades\Auth;
 
 class ContractorController extends Controller
 {
@@ -149,5 +150,19 @@ class ContractorController extends Controller
         $contractor->delete();
 
         return Redirect::route('contractors.index');
+    }
+
+    // Api for allowing contractors on login.
+    public function apiLogin(Request $request) {
+        $email = $request->Input('email');
+        $password = $request->Input('password');
+
+        if (Auth::attempt(['email' => $email, 'password' => $password])) {
+            // Authentication passed...
+            $contractor = User::where('email', '=', $email)->first();
+            return  $contractor->JsonSerializable();
+        } else {
+            return response('Unauthorized.', 401);
+        }
     }
 }
