@@ -155,6 +155,6 @@ class NotificationController extends Controller
     public function apiShow($id) {
         $notification = Notification::find($id);
 
-        return $notification->JsonSerializable();
+        return $notification->jsonSerializable();
     }
 }

@@ -40,4 +40,15 @@ class Key extends Model
     public function getUpdatedAt() {
         return $this->updated_at->diffForHumans();
     }
+
+    public function jsonSerializable() {
+        return [
+            'id' => $this->id,
+            'takenAt' => $this->taken_at,
+            'returnedAt' => $this->returned_at,
+            'pin' => $this->pin,
+            'property' => $this->property,
+            'contractor' =>$this->contractor
+        ];
+    }
 }

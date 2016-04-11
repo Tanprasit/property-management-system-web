@@ -45,17 +45,17 @@ class Device extends Model implements JsonSerializable
         return $this->belongsToMany('App\Notification');
     }
 
-    public function JsonSerializable() {
+    public function jsonSerializable() {
         return [
             'id' => $this->id,
             'model' => $this->model,
             'manufactorer' => $this->manufacturer,
             'product' => $this->product,
-            'sdk_version' => $this->sdk_version,
-            'serial_number' => $this->serial_number,
+            'sdkVersion' => $this->sdk_version,
+            'serialNumber' => $this->serial_number,
             'latitude' => $this->latitude,
             'longitude' => $this->longitude,
-            'notificationsList' => $this->notifications()->get()
+            'notificationsList' => [$this->notifications()->get()]
         ];
     }
 

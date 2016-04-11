@@ -31,7 +31,7 @@ class Notification extends Model implements JsonSerializable
         return $this->belongsToMany('App\Device');
     }
 
-    public function JsonSerializable() {
+    public function jsonSerializable() {
         return [
             'title' => $this->title,
             'notes' => $this->notes,

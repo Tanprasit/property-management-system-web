@@ -160,7 +160,7 @@ class ContractorController extends Controller
         if (Auth::attempt(['email' => $email, 'password' => $password])) {
             // Authentication passed...
             $contractor = User::where('email', '=', $email)->first();
-            return  $contractor->JsonSerializable();
+            return  $contractor->jsonSerializable();
         } else {
             return response('Unauthorized.', 401);
         }

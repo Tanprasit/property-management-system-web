@@ -224,12 +224,12 @@ class DeviceController extends Controller
             $newDevice->save();
         } 
 
-        return $newDevice->JsonSerializable();
+        return $newDevice->jsonSerializable();
     }
 
     public function apiShow(Request $request, $id) {
         $device = Device::find($id);
 
-        return $device->JsonSerializable();
+        return $device->jsonSerializable();
     }
 }

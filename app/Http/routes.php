@@ -69,6 +69,9 @@ Route::group(['middleware' => ['digest']], function () {
 
     // API for registering new devices
     Route::post('api/v1/register/device/', 'DeviceController@apiRegister');
+
+    // API for getting contractor's keys
+    Route::get('api/v1/users/{id}/keys/', 'KeyController@apiGetContractorKeys');
 }); 
 
 // API for login

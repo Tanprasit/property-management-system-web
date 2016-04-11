@@ -45,12 +45,27 @@ class User extends Authenticatable
         return $this->updated_at->diffForHumans();
     }
 
-    public function JsonSerializable() {
+    public function jsonSerializable() {
         return [
-            'full_name' => $this->full_name,
+            'id' => $this->id,
+            'fullName' => $this->full_name,
             'email' => $this->email,
             'status' => $this->status,
-            'mobile' => $this->mobile
+            'mobile' => $this->mobile,
+            'keys' => [$this->getKeysForApi()],
         ];
+    }
+
+    public function getKeysForApi() {
+        $keys  = $this->keys()->get();
+
+        $keyList = [];
+
+        foreach ($keys as $key) {
+            # code...
+            $keyList[] = $key->jsonSerializable();
+        }
+
+        return $keyList;
     }
 }

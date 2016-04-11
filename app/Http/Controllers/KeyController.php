@@ -163,4 +163,18 @@ class KeyController extends Controller
 
         return Redirect::route('keys.index');
     }
+
+    public function  apiGetContractorKeys(Request $request, $id) {
+        // Eager loaded contractor details along with property details. Saves extra database hits.
+        $contractor = User::with(['keys.property', 'keys.contractor'])->find($id);
+
+        $keyList = [];
+
+        foreach ($contractor->keys as $value) {
+            # code...
+            $keyList[] = $value->jsonSerializable();
+        }
+
+        return $keyList;
+    }
 }
