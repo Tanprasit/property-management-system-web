@@ -14,9 +14,9 @@ class CreateKeysTable extends Migration
     {
         Schema::create('keys', function (Blueprint $table) {
             $table->increments('id');
-            $table->dateTime('taken_at');
-            $table->dateTime('returned_at');
-            $table->integer('value');
+            $table->dateTime('taken_at')->nullable();
+            $table->dateTime('returned_at')->nullable();;
+            $table->integer('pin');
             $table->integer('property_id');
             $table->integer('user_id');
             $table->timestamps();

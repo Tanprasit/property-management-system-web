@@ -28,7 +28,7 @@
           </div>
 
           <div class="form-group">
-              <label class="col-lg-4 control-label">manufacturer</label>
+              <label class="col-lg-4 control-label">Manufacturer</label>
               <div class="col-lg-6">
                 <input type="text" name="manufacturer" class="form-control" value="{{ $device->manufacturer }}" readonly="readonly">
               </div>

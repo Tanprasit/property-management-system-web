@@ -2,7 +2,7 @@ $(document).ready(function() {
 
     $('#address_line_1').change(function() {
         var len = $( this ).val().length;
-        if (len > 1) {
+        if (len > 0) {
             $( this ).parents( '.input-container' ).addClass( 'has-success' );
             $( this ).siblings( '.glyphicon-ok' ).removeClass( 'hidden' );
             $( this ).parents( '.input-container' ).removeClass('has-error');
@@ -17,7 +17,7 @@ $(document).ready(function() {
 
     $('#address_line_2').change(function() {
         var len = $( this ).val().length;
-        if (len > 1) {
+        if (len > 0) {
             $( this ).parents( '.input-container' ).addClass( 'has-success' );
             $( this ).siblings( '.glyphicon-ok' ).removeClass( 'hidden' );
             $( this ).parents( '.input-container' ).removeClass('has-error');
@@ -32,7 +32,7 @@ $(document).ready(function() {
 
     $('#city').change(function() {
         var len = $( this ).val().length;
-        if (len > 1) {
+        if (len > 0) {
             $( this ).parents( '.input-container' ).addClass( 'has-success' );
             $( this ).siblings( '.glyphicon-ok' ).removeClass( 'hidden' );
             $( this ).parents( '.input-container' ).removeClass('has-error');
@@ -47,7 +47,7 @@ $(document).ready(function() {
 
     $('#county').change(function() {
         var len = $( this ).val().length;
-        if (len > 1) {
+        if (len > 0) {
             $( this ).parents( '.input-container' ).addClass( 'has-success' );
             $( this ).siblings( '.glyphicon-ok' ).removeClass( 'hidden' );
             $( this ).parents( '.input-container' ).removeClass('has-error');
@@ -66,7 +66,7 @@ $(document).ready(function() {
 
         var valid = ( isValidPostcode( $( this ).val()) ) ? true : false;
 
-        if (len > 1 && valid == true) {
+        if (len > 0 && valid == true) {
             $( this ).parents( '.input-container' ).addClass( 'has-success' );
             $( this ).siblings( '.glyphicon-ok' ).removeClass( 'hidden' );
             $( this ).parents( '.input-container' ).removeClass('has-error');

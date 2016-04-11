@@ -27,7 +27,7 @@
                 </div>
 
                 <div class="form-group has-feedback">
-                    <label class="col-lg-4 control-label">manufacturer</label>
+                    <label class="col-lg-4 control-label">Manufacturer</label>
                     <div class="col-lg-6 input-container">
                         <input id="manufacturer" type="text" name="manufacturer" class="form-control" value="{{ $device->manufacturer }}">
                         <span class="glyphicon glyphicon-ok form-control-feedback hidden" aria-hidden="true"></span>

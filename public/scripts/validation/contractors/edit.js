@@ -3,7 +3,7 @@ $(document).ready(function() {
     $('#full_name').change(function() {
         var len = $( this ).val().length;
 
-        if (len > 1) {
+        if (len > 0) {
             $( this ).parents( '.input-container' ).addClass( 'has-success' );
             $( this ).siblings( '.glyphicon-ok' ).removeClass( 'hidden' );
             $( this ).parents( '.input-container' ).removeClass('has-error');
@@ -21,7 +21,7 @@ $(document).ready(function() {
 
         var valid = ( isValidPassword( $( this ).val() ) ) ? true : false ;
 
-        if (len > 1 && valid == true) {
+        if (len > 0 && valid == true) {
             $( this ).parents( '.input-container' ).addClass( 'has-success' );
             $( this ).siblings( '.glyphicon-ok' ).removeClass( 'hidden' );
             $( this ).parents( '.input-container' ).removeClass('has-error');
@@ -39,7 +39,7 @@ $(document).ready(function() {
 
         var valid = ( isValidEmail( $( this ).val() ) ) ? true : false ;
 
-        if (len > 1 && valid == true) {
+        if (len > 0 && valid == true) {
             $( this ).parents( '.input-container' ).addClass( 'has-success' );
             $( this ).siblings( '.glyphicon-ok' ).removeClass( 'hidden' );
             $( this ).parents( '.input-container' ).removeClass('has-error');
@@ -57,7 +57,7 @@ $(document).ready(function() {
 
         var valid = ( isValidMobileNumber( $( this ).val() ) ) ? true : false ;
 
-        if (len > 1 && valid == true) {
+        if (len > 0 && valid == true) {
             $( this ).parents( '.input-container' ).addClass( 'has-success' );
             $( this ).siblings( '.glyphicon-ok' ).removeClass( 'hidden' );
             $( this ).parents( '.input-container' ).removeClass('has-error');

@@ -26,7 +26,7 @@
                   <thead>
                       <tr>
                           <th>Model</th>
-                          <th>manufacturer</th>
+                          <th>Manufacturer</th>
                           <th>Product</th>
                           <th>SDK Version</th>
                           <th>Serial Number</th>

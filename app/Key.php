@@ -14,7 +14,9 @@ class Key extends Model
     protected $fillable = [
         'taken_at',
         'returned_at',
-        'value',
+        'pin',
+        'property_id',
+        'user_id',
     ];
 
     /**
@@ -33,5 +35,9 @@ class Key extends Model
     // Get contractors who can access this key. 
     public function contractor() {
         return $this->belongsTo('App\User', 'user_id');
+    }
+
+    public function getUpdatedAt() {
+        return $this->updated_at->diffForHumans();
     }
 }

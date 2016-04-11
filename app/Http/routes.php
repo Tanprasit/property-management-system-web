@@ -37,6 +37,8 @@ Route::group(['middleware' => ['web']], function () {
 
         Route::resource('devices', 'DeviceController');
 
+        Route::resource('keys', 'KeyController');
+
         Route::get('auth.logout', 'Auth\AuthController@getLogout');
 
         // Properties and devices relationship routes.

@@ -3,7 +3,7 @@ $(document).ready(function() {
     $('#title').change(function() {
         var len = $( this ).val().length;
 
-        if (len > 1) {
+        if (len > 0) {
             $( this ).parents( '.input-container' ).addClass( 'has-success' );
             $( this ).siblings( '.glyphicon-ok' ).removeClass( 'hidden' );
             $( this ).parents( '.input-container' ).removeClass('has-error');
@@ -20,7 +20,7 @@ $(document).ready(function() {
     $('#type').change(function() {
         var len = $( this ).val().length;
 
-        if (len > 1) {
+        if (len > 0) {
             $( this ).parents( '.input-container' ).addClass( 'has-success' );
             $( this ).siblings( '.glyphicon-ok' ).removeClass( 'hidden' );
             $( this ).parents( '.input-container' ).removeClass('has-error');
