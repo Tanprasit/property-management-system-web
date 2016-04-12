@@ -48,7 +48,6 @@ Route::group(['middleware' => ['web']], function () {
         // Devices and notification relationship routes.
         Route::post('devices/{id}/addNotification', 'DeviceController@addNotification');
         Route::post('devices/{id}/removeNotification', 'DeviceController@removeNotification');        
-
     });
 
     // Authentication routes...
@@ -68,10 +67,16 @@ Route::group(['middleware' => ['digest']], function () {
     Route::get('api/v1/devices/{id}', 'DeviceController@apiShow');
 
     // API for registering new devices
-    Route::post('api/v1/register/device/', 'DeviceController@apiRegister');
+    Route::post('api/v1/register/device', 'DeviceController@apiRegister');
 
     // API for getting contractor's keys
-    Route::get('api/v1/users/{id}/keys/', 'KeyController@apiGetContractorKeys');
+    Route::get('api/v1/users/{id}/keys', 'KeyController@apiGetContractorKeys');
+
+    // API for updating key with time taken.
+    Route::post('api/v1/key/taken', 'KeyController@apiUpdateTimeTaken');
+
+    // API for updating key with time returned.
+    Route::post('api/v1/key/returned', 'KeyController@apiUpdateTimeReturned');
 }); 
 
 // API for login

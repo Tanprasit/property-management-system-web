@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -176,5 +177,54 @@ class KeyController extends Controller
         }
 
         return $keyList;
+    }
+
+    // API for updating key with time taken.
+    public function apiUpdateTimeTaken(Request $request) {
+        $keyId = $request->Input('id');
+        $takenAt = $request->Input('taken_at');
+
+        $message = "";
+        $error = true;
+
+        try {
+            $key = Key::find($keyId);
+            $key->taken_at = $takenAt;
+
+            $verify = $key->save();
+
+            $message = "Time taken updated successfully.";
+            $error = false;
+        } catch(\Exception $e) {
+            $message = "Failed to update key taken time."
+        }
+        return ($error == true) 
+            ? response($message, 403)
+            : response($message, 200);
+    }
+
+    // API for updating key with time returned.
+    public function apiUpdateTimeReturned(Request $request) {
+        $keyId = $request->Input('id');
+        $returnedAt = $request->Input('returned_at');
+
+        $message = "";
+        $error = true;
+
+        try {
+            $key = Key::find($keyId);
+
+            $key->returned_at = $returnedAt;
+
+            $verify = $key->save();
+
+            $message = "Time returned updated successfully.";
+            $error = false;
+        } catch(\Exception $e) {
+            $message = "Failed to update key returned time."
+        }
+        return ($error = true) 
+            ? response($message, 403)
+            : response($message, 200);
     }
 }
