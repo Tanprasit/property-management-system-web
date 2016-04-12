@@ -196,7 +196,7 @@ class KeyController extends Controller
             $message = "Time taken updated successfully.";
             $error = false;
         } catch(\Exception $e) {
-            $message = "Failed to update key taken time."
+            $message = "Failed to update key taken time.";
         }
         return ($error == true) 
             ? response($message, 403)
@@ -221,7 +221,7 @@ class KeyController extends Controller
             $message = "Time returned updated successfully.";
             $error = false;
         } catch(\Exception $e) {
-            $message = "Failed to update key returned time."
+            $message = "Failed to update key returned time.";
         }
         return ($error = true) 
             ? response($message, 403)
