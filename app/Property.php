@@ -41,4 +41,15 @@ class Property extends Model
     public function getUpdatedAt() {
         return $this->updated_at->diffForHumans();
     }
+
+    public function jsonSerializable() {
+        return [
+            'id' => $this->id,
+            'addressLine1' => $this->address_line_1,
+            'addressLine2' => $this->address_line_2,
+            'city' => $this->city,
+            'county' => $this->county,
+            'postcode' =>$this->postcode
+        ];
+    }
 }

@@ -55,7 +55,7 @@ class Device extends Model implements JsonSerializable
             'serialNumber' => $this->serial_number,
             'latitude' => $this->latitude,
             'longitude' => $this->longitude,
-            'notificationsList' => [$this->notifications()->get()]
+            'notificationsList' => $this->notifications()->get()
         ];
     }
 

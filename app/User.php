@@ -52,7 +52,7 @@ class User extends Authenticatable
             'email' => $this->email,
             'status' => $this->status,
             'mobile' => $this->mobile,
-            'keys' => [$this->getKeysForApi()],
+            'keys' => $this->getKeysForApi(),
         ];
     }
 

@@ -47,7 +47,7 @@ class Key extends Model
             'takenAt' => $this->taken_at,
             'returnedAt' => $this->returned_at,
             'pin' => $this->pin,
-            'property' => $this->property,
+            'property' => $this->property->jsonSerializable(),
             'contractor' =>$this->contractor
         ];
     }
