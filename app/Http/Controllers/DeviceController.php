@@ -174,9 +174,9 @@ class DeviceController extends Controller
     public function addNotification(Request $request, $id) {
         $device = Device::find($id);
 
-        $notification_id = $request->Input('notification_id');
+        $notificationId = $request->Input('notification_id');
 
-        $device->notifications()->attach($notification_id);
+        $device->notifications()->attach($notificationId);
 
         $device->save();
 
@@ -187,9 +187,9 @@ class DeviceController extends Controller
     public function removeNotification(Request $request, $id) {
         $device = Device::find($id);
 
-        $notification_id = $request->Input('notification_id');
+        $notificationId = $request->Input('notification_id');
 
-        $device->notifications()->detach($notification_id);
+        $device->notifications()->detach($notificationId);
 
         $device->save();
 

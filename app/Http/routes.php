@@ -42,12 +42,26 @@ Route::group(['middleware' => ['web']], function () {
         Route::get('auth.logout', 'Auth\AuthController@getLogout');
 
         // Properties and devices relationship routes.
-        Route::post('properties/{id}/addDevice', 'PropertyController@addDevice');
-        Route::post('properties/{id}/removeDevice', 'PropertyController@removeDevice');
+        Route::post('property/{id}/addDevice', 'PropertyController@addDevice');
+        Route::post('property/{id}/removeDevice', 'PropertyController@removeDevice');
+        
+         // Authorizing and deauthorizing contractors from property.
+        Route::post('property/{id}/addContractor', 'PropertyController@addContractor');
+        Route::post('property/{id}/removeContractor', 'PropertyController@removeContractor');
 
         // Devices and notification relationship routes.
-        Route::post('devices/{id}/addNotification', 'DeviceController@addNotification');
-        Route::post('devices/{id}/removeNotification', 'DeviceController@removeNotification');        
+        Route::post('device/{id}/addNotification', 'DeviceController@addNotification');
+        Route::post('device/{id}/removeNotification', 'DeviceController@removeNotification');       
+
+
+        // Adding and remove keys from contractors.
+         Route::post('contractor/{id}/addKey', 'ContractorController@addKey');
+         Route::post('contractor/{id}/removeKey', 'ContractorController@removeKey');
+
+         // Adding and remove contractors from keys.
+         Route::post('key/{id}/addContractor', 'KeyController@addContractor');
+         Route::post('key/{id}/removeContractor', 'KeyController@removeContractor');
+
     });
 
     // Authentication routes...

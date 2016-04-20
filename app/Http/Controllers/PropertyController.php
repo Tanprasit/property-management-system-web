@@ -9,7 +9,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Contracts\Validation\Validator;
 
 use App\Property;
+use App\User;
 use App\Device;
+use App\Key;
 use Redirect;
 
 class PropertyController extends Controller
@@ -85,6 +87,8 @@ class PropertyController extends Controller
         //
         $property = Property::find($id);
 
+        $contractors = User::all();
+
         $currentDevicesIds = [];
         $index = 0;
 
@@ -96,7 +100,7 @@ class PropertyController extends Controller
 
         // $devices = Device::all();
 
-        return View('properties.show', compact('property', 'devices'));
+        return View('properties.show', compact(['property', 'devices', 'contractors']));
     }
 
     /**
@@ -170,9 +174,9 @@ class PropertyController extends Controller
     public function addDevice(Request $request, $id) {
         $property = Property::find($id);
 
-        $device_id = $request->Input('device_id');
+        $deviceId = $request->Input('device_id');
 
-        $property->devices()->attach($device_id);
+        $property->devices()->attach($deviceId);
 
         $property->save();
 
@@ -183,12 +187,40 @@ class PropertyController extends Controller
     public function removeDevice(Request $request, $id) {
         $property = Property::find($id);
 
-        $device_id = $request->Input('device_id');
+        $deviceId = $request->Input('device_id');
 
-        $property->devices()->detach($device_id);
+        $property->devices()->detach($deviceId);
 
         $property->save();
 
         return Redirect::route('properties.show', [$property->id]);
+    }
+
+    public function addContractor(Request $request, $id) {
+
+        $contractorId = $request->Input('contractor_id');
+        $pin = $request->Input('pin');
+
+        $key = new Key();
+
+        $key->pin = $pin;
+        $key->user_id = $contractorId;
+        $key->property_id = $id;
+        $key->taken_at = "0000-00-00 00:00:00";
+        $key->returned_at = "0000-00-00 00:00:00";
+
+        $key->save();
+
+        return Redirect::route('properties.show', [$id]);
+    }
+
+    public function removeContractor(Request $request, $id) {
+        $keyId = $request->Input('key_id');
+
+        $key = Key::find($keyId);
+
+        $key->delete();
+
+        return Redirect::route('properties.show', [$id]);
     }
 }

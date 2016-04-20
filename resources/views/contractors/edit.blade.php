@@ -57,6 +57,8 @@
         </form>
     </div>
 </div>
+
+
 @stop
 @section('scripts')
 <script type="text/javascript" src="/scripts/validation/contractors/create.js"></script>

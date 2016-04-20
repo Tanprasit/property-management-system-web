@@ -25,21 +25,20 @@
               <table id="keys-table" class="display nowrap" cellspacing="0" width="100%">
                   <thead>
                       <tr>
-                          <th>Taken</th>
-                          <th>Returned</th>
-                          <th>Pin</th>
-                          <th>Property</th>
-                          <th>Contractor</th>
-                          <th>Options</th>
+                         <th>Address Line 1</th>
+                         <th>City</th>
+                         <th>Postcode</th>
+                         <th>Contractor</th>
+                         <th>Options</th>
+                      </tr>
                       </tr>
                   </thead>
                   <tbody>
                   @foreach ($keys as $key)
                       <tr class="clickable-row"  href="{{ URL::route('keys.show', [$key->id]) }}" onmouseover="this.style.cursor='pointer'">
-                          <td>{{ $key->taken_at }}</td>
-                          <td>{{ $key->returned_at }}</td>
-                          <td>{{ $key->pin }}</td>
-                          <td>{{ $key->property->address_line_1  }}</td>
+                          <td>{{ $key->property->address_line_1 }}</td>
+                          <td>{{ $key->property->city }} </td>
+                          <td>{{ $key->property->postcode }}</td>
                           <td>{{ $key->contractor->full_name }}</td>
                           <td>
                               <form method="POST" action="{{ URL::route('keys.destroy', [$key->id]) }}">

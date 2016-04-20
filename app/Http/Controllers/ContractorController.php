@@ -9,6 +9,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Contracts\Validation\Validator;
 
 use App\User;
+use App\Key;
+use App\Property;
 use Redirect;
 use Illuminate\Support\Facades\Auth;
 
@@ -83,9 +85,13 @@ class ContractorController extends Controller
     public function show($id)
     {
         //
-        $contractor = User::find($id);
+        $contractor = User::with('keys')->find($id);
 
-        return View('contractors.show', compact('contractor'));
+        $keys = Key::all();
+
+        $properties = Property::all();
+
+        return View('contractors.show', compact(['contractor', 'keys', 'properties']));
     }
 
     /**
@@ -159,10 +165,42 @@ class ContractorController extends Controller
 
         if (Auth::attempt(['email' => $email, 'password' => $password])) {
             // Authentication passed...
-            $contractor = User::where('email', '=', $email)->first();
+            $contractor = User::where('email', '=', $email)->wfirst();
             return  $contractor->jsonSerializable();
         } else {
             return response('Unauthorized.', 401);
         }
+    }
+
+    // Add new key to contractor. Id is contractor id.
+    public function addKey(Request $request, $id)  {
+
+        $propertyId = $request->Input('property_id');
+        $pin = $request->Input('pin');
+
+        $contractor = User::find($id);
+
+        $key = new Key();
+
+        $key->pin = $pin;
+        $key->user_id = $id;
+        $key->property_id = $propertyId;
+        $key->taken_at = "0000-00-00 00:00:00";
+        $key->returned_at = "0000-00-00 00:00:00";
+
+        $key->save();
+
+        return Redirect::route('contractors.show', $id);
+    }
+
+    // Remove key from contrator. Id is contractor id.
+    public function removeKey(Request $request, $id) {
+        $keyId = $request->Input('key_id');
+
+        $key = Key::find($keyId);
+
+        $key->delete();
+
+        return Redirect::route('contractors.show', $id);
     }
 }

@@ -88,9 +88,9 @@ class KeyController extends Controller
     public function show($id)
     {
         //
-        $key = Key::find($id);
+        $key = Key::with('contractor')->find($id);
 
-        return View('keys.show' , compact('key'));
+        return View('keys.show' , compact(['key']));
     }
 
     /**
@@ -226,5 +226,32 @@ class KeyController extends Controller
         return ($error = true) 
             ? response($message, 403)
             : response($message, 200);
+    }
+
+        // Add new contractor to key. Id is contractor id.
+    public function addContractor(Request $request, $id)  {
+
+        $contractorId = $request->Input('contractor_id');
+
+        $key = Key::find($id);
+
+        $contractor = User::find($contractorId);
+
+        $contractor->keys()->save($key);
+
+        $contractor->save();
+
+        return Redirect::route('keys.show', $id);
+    }
+
+    // Remove  contractor from key. Id is contractor id.
+    public function removeContractor(Request $request, $id) {
+        $contractorId = $request->Input('contractor_id');
+
+        $contractor = User::find($keyId);
+
+        $contractor->keys()->find($id)->delete();
+
+        return Redirect::route('keys.show', $id);
     }
 }
