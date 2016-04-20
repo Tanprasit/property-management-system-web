@@ -90,7 +90,7 @@
           <td>{{ $device->sdk_version }}</td>
           <td>{{ $device->serial_number }}</td>
           <td>
-          <form method="POST" action="/properties/{{ $property->id }}/removeDevice">
+          <form method="POST" action="/property/{{ $property->id }}/removeDevice">
             <input type="hidden" name="device_id" value="{{ $device->id }}"></input>
             {!! csrf_field() !!}
             <a class="btn btn-primary" href="{{ URL::route('devices.edit', $device->id) }}">Edit</a>
@@ -141,11 +141,11 @@
                 <td>{{ $key->taken_at }}</td>
                 <td>{{ $key->returned_at }}</td>
                 <td>
-                    <form method="POST" action="/property/{{ $key->id }}/removeContractor">
-                        {{ method_field('DELETE') }}
-                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                    <form method="POST" action="/property/{{ $property->id }}/removeContractor">
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+                        <input type="hidden" name="key_id" value="{{ $key->id }}" />
                         <a class="btn btn-primary" href="{{ URL::route('contractors.edit', [$key->contractor->id] ) }}">Edit</a>
-                        <button class="btn btn-danger" type="submit">Delete</button>
+                        <button class="btn btn-danger" type="submit">Remove</button>
                     </form>
                 </td>
               </tr>

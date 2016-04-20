@@ -81,7 +81,7 @@ class NotificationController extends Controller
     public function show($id)
     {
         //
-        $notification = Notification::find($id);
+        $notification = Notification::findOrFail($id);
 
         return View('notifications.show', compact('notification'));
     }
@@ -95,7 +95,7 @@ class NotificationController extends Controller
     public function edit($id)
     {
         //
-        $notification = Notification::find($id);
+        $notification = Notification::findOrFail($id);
 
         return  View('notifications.edit', compact('notification'));
     }
@@ -117,7 +117,7 @@ class NotificationController extends Controller
             'data' => 'required'
         ]);
         
-        $notification = Notification::find($id);
+        $notification = Notification::findOrFail($id);
 
         $title = $request->Input('title');        
         $notes = $request->Input('notes');
@@ -145,7 +145,7 @@ class NotificationController extends Controller
     public function destroy($id)
     {
         //
-        $notification = Notification::find($id);
+        $notification = Notification::findOrFail($id);
 
         $notification->delete();
 
@@ -153,7 +153,7 @@ class NotificationController extends Controller
     }
 
     public function apiShow($id) {
-        $notification = Notification::find($id);
+        $notification = Notification::findOrFail($id);
 
         return $notification->jsonSerializable();
     }

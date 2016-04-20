@@ -118,11 +118,11 @@
                                 <td>{{ $notification->title }}</td>
                                 <td>{{ $notification->type }}</td>
                                 <td>
-                                    <form method="POST" action="/devices/{{ $device->id }}/removeNotification">
+                                    <form method="POST" action="/device/{{ $device->id }}/removeNotification">
                                         {!! csrf_field() !!}
                                         <input type="hidden" name="notification_id" value="{{ $notification->id }}"></input>
                                         <a class="btn btn-primary" href="{{ URL::route('notifications.edit', [$notification->id] ) }}">Edit</a>
-                                        <button class="btn btn-danger" type="submit">Delete</button>
+                                        <button class="btn btn-danger" type="submit">Remove</button>
                                     </form>
                                 </td>
                             </tr>
@@ -145,7 +145,7 @@
         <h4 class="modal-title" id="myModalLabel">Add Notification</h4>
       </div>
       <div class="modal-body">
-        <form class="form-group" action="/devices/{{ $device->id }}/addNotification" method="POST">
+        <form class="form-group" action="/device/{{ $device->id }}/addNotification" method="POST">
             {!! csrf_field() !!}
             <select class="form-control" name="notification_id">
             @foreach ($notifications as $notifcation)

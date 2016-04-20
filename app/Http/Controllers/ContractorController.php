@@ -85,7 +85,7 @@ class ContractorController extends Controller
     public function show($id)
     {
         //
-        $contractor = User::with('keys')->find($id);
+        $contractor = User::with('keys')->findOrFail($id);
 
         $keys = Key::all();
 
@@ -165,7 +165,7 @@ class ContractorController extends Controller
 
         if (Auth::attempt(['email' => $email, 'password' => $password])) {
             // Authentication passed...
-            $contractor = User::where('email', '=', $email)->wfirst();
+            $contractor = User::where('email', '=', $email)->first();
             return  $contractor->jsonSerializable();
         } else {
             return response('Unauthorized.', 401);

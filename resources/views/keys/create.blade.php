@@ -20,7 +20,7 @@
                     <div class="col-lg-6 input-container">
                         <select id="property-id" class="form-control" name="property_id">
                         @foreach ($properties as $property)
-                            <option value="{{ $property->id }}">{{ $property->postcode }}</option>
+                            <option value="{{ $property->id }}">{{ $property->address_line_1 }}</option>
                         @endforeach
                         </select>
                         <span class="glyphicon glyphicon-ok form-control-feedback hidden" aria-hidden="true"></span>

@@ -90,7 +90,7 @@ class DeviceController extends Controller
     public function show($id)
     {
         //
-        $device = Device::find($id);
+        $device = Device::findOrFail($id);
 
         $notifications = Notification::all();
 
@@ -106,7 +106,7 @@ class DeviceController extends Controller
     public function edit($id)
     {
         //
-        $device = Device::find($id);
+        $device = Device::findOrFail($id);
 
         return View('devices.edit', compact('device'));
     }
@@ -131,7 +131,7 @@ class DeviceController extends Controller
             'longitude' => ''
         ]);
 
-        $device = Device::find($id);
+        $device = Device::findOrFail($id);
 
         $model = $request->Input('model');
         $manufacturer = $request->Input('manufacturer');
@@ -163,7 +163,7 @@ class DeviceController extends Controller
     public function destroy($id)
     {
         //
-        $device = Device::find($id);
+        $device = Device::findOrFail($id);
 
         $device->delete();
 
@@ -172,7 +172,7 @@ class DeviceController extends Controller
 
     // Add notification to device
     public function addNotification(Request $request, $id) {
-        $device = Device::find($id);
+        $device = Device::findOrFail($id);
 
         $notificationId = $request->Input('notification_id');
 
@@ -185,7 +185,7 @@ class DeviceController extends Controller
 
     // Remove notification from a device
     public function removeNotification(Request $request, $id) {
-        $device = Device::find($id);
+        $device = Device::findOrFail($id);
 
         $notificationId = $request->Input('notification_id');
 
@@ -228,7 +228,7 @@ class DeviceController extends Controller
     }
 
     public function apiShow(Request $request, $id) {
-        $device = Device::find($id);
+        $device = Device::findOrFail($id);
 
         return $device->jsonSerializable();
     }

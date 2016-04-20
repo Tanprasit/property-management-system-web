@@ -85,7 +85,7 @@ class PropertyController extends Controller
     public function show($id)
     {
         //
-        $property = Property::find($id);
+        $property = Property::findOrFail($id);
 
         $contractors = User::all();
 
@@ -112,7 +112,7 @@ class PropertyController extends Controller
     public function edit($id)
     {
         //
-        $property = Property::find($id);
+        $property = Property::findOrFail($id);
 
         return View('properties.edit', compact('property'));
     }
@@ -135,7 +135,7 @@ class PropertyController extends Controller
             'postcode' => 'required'
         ]);
 
-        $property = Property::find($id);
+        $property = Property::findOrFail($id);
 
         $address_line_1 = $request->Input('address_line_1');
         $address_line_2 = $request->Input('address_line_2');
@@ -163,7 +163,7 @@ class PropertyController extends Controller
     public function destroy($id)
     {
         //
-        $property = Property::find($id);
+        $property = Property::findOrFail($id);
 
         $property->delete();
 
@@ -172,7 +172,7 @@ class PropertyController extends Controller
 
     // Mapping a single device to a property. Will update this later allow multiple additions.
     public function addDevice(Request $request, $id) {
-        $property = Property::find($id);
+        $property = Property::findOrFail($id);
 
         $deviceId = $request->Input('device_id');
 
@@ -185,7 +185,7 @@ class PropertyController extends Controller
 
     // Remove disconnecting a device from a property. 
     public function removeDevice(Request $request, $id) {
-        $property = Property::find($id);
+        $property = Property::findOrFail($id);
 
         $deviceId = $request->Input('device_id');
 
@@ -217,7 +217,7 @@ class PropertyController extends Controller
     public function removeContractor(Request $request, $id) {
         $keyId = $request->Input('key_id');
 
-        $key = Key::find($keyId);
+        $key = Key::findOrFail($keyId);
 
         $key->delete();
 

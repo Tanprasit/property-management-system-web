@@ -88,7 +88,7 @@ class KeyController extends Controller
     public function show($id)
     {
         //
-        $key = Key::with('contractor')->find($id);
+        $key = Key::with('contractor')->findOrFail($id);
 
         return View('keys.show' , compact(['key']));
     }
@@ -102,7 +102,7 @@ class KeyController extends Controller
     public function edit($id)
     {
         //
-        $key = Key::find($id);
+        $key = Key::findOrFail($id);
 
         $contractors = User::all()->sortBy('full_name');;
 
@@ -135,7 +135,7 @@ class KeyController extends Controller
         $propertyId = $request->input('property_id');
         $pin = $request->input('pin');
 
-        $key = Key::find($id);
+        $key = Key::findOrFail($id);
 
         $key->taken_at = $takenAt;
         $key->returned_at = $returnedAt;
@@ -158,7 +158,7 @@ class KeyController extends Controller
     public function destroy($id)
     {
         //
-        $key = Key::find($id);
+        $key = Key::findOrFail($id);
 
         $key->delete();
 
@@ -176,7 +176,9 @@ class KeyController extends Controller
             $keyList[] = $value->jsonSerializable();
         }
 
-        return $keyList;
+        return [
+            'response' => $keyList,
+        ];
     }
 
     // API for updating key with time taken.
@@ -188,7 +190,7 @@ class KeyController extends Controller
         $error = true;
 
         try {
-            $key = Key::find($keyId);
+            $key = Key::findOrFail($keyId);
             $key->taken_at = $takenAt;
 
             $verify = $key->save();
@@ -212,7 +214,7 @@ class KeyController extends Controller
         $error = true;
 
         try {
-            $key = Key::find($keyId);
+            $key = Key::findOrFail($keyId);
 
             $key->returned_at = $returnedAt;
 
@@ -233,9 +235,9 @@ class KeyController extends Controller
 
         $contractorId = $request->Input('contractor_id');
 
-        $key = Key::find($id);
+        $key = Key::findOrFail($id);
 
-        $contractor = User::find($contractorId);
+        $contractor = User::findOrFail($contractorId);
 
         $contractor->keys()->save($key);
 
@@ -248,9 +250,9 @@ class KeyController extends Controller
     public function removeContractor(Request $request, $id) {
         $contractorId = $request->Input('contractor_id');
 
-        $contractor = User::find($keyId);
+        $contractor = User::findOrFail($keyId);
 
-        $contractor->keys()->find($id)->delete();
+        $contractor->keys()->findOrFail($id)->delete();
 
         return Redirect::route('keys.show', $id);
     }
