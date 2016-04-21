@@ -185,49 +185,40 @@ class KeyController extends Controller
     public function apiUpdateTimeTaken(Request $request) {
         $keyId = $request->Input('id');
         $takenAt = $request->Input('taken_at');
-
-        $message = "";
-        $error = true;
+        $contractorId = $request->Input('contractor_id');
 
         try {
             $key = Key::findOrFail($keyId);
             $key->taken_at = $takenAt;
-
             $verify = $key->save();
 
-            $message = "Time taken updated successfully.";
-            $error = false;
+            $contractor = User::findOrFail($contractorId);
+            return response($contractor->jsonSerializable() , 200);
+            
         } catch(\Exception $e) {
             $message = "Failed to update key taken time.";
+            return response($message, 403);
         }
-        return ($error == true) 
-            ? response($message, 403)
-            : response($message, 200);
     }
 
     // API for updating key with time returned.
     public function apiUpdateTimeReturned(Request $request) {
         $keyId = $request->Input('id');
         $returnedAt = $request->Input('returned_at');
-
-        $message = "";
-        $error = true;
+        $contractorId = $request->Input('contractor_id');
 
         try {
             $key = Key::findOrFail($keyId);
-
             $key->returned_at = $returnedAt;
-
             $verify = $key->save();
 
-            $message = "Time returned updated successfully.";
-            $error = false;
+            $contractor = User::findOrFail($contractorId);
+            return $contractor->jsonSerializable();
+
         } catch(\Exception $e) {
             $message = "Failed to update key returned time.";
+            return response($message ,403);
         }
-        return ($error = true) 
-            ? response($message, 403)
-            : response($message, 200);
     }
 
         // Add new contractor to key. Id is contractor id.
