@@ -103,7 +103,7 @@
         <form class="form-group" action="/contractor/{{ $contractor->id }}/addKey" method="POST" autocomplete="off">
             {!! csrf_field() !!}
             <div class="form-group">
-                <label>Contractor</label>
+                <label>Property</label>
                 <select class="form-control" name="property_id">
                 @foreach ($properties as $property)
                     <option value="{{ $property->id }}">{{ $property->address_line_1 }}</option>

@@ -83,7 +83,7 @@
                 window.location.replace(response.redirectURL);
             });
  
-            // If you want to prevent the form submit (if your editor is in a <form> element), return false here
+            // Prevent the form submit (if your editor is in a <form> element).
             return false;
         }
     }

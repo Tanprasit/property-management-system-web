@@ -28,7 +28,7 @@
                           <th>Model</th>
                           <th>Manufacturer</th>
                           <th>Product</th>
-                          <th>SDK Version</th>
+                        <th>SDK Version</th>
                           <th>Serial Number</th>
                           <th>Options</th>
                       </tr>

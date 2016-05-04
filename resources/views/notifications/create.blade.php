@@ -45,7 +45,7 @@
 <div class="row">
     <div class="col-lg-12 text-center">
         <form>
-            <textarea name="advertArea" id="advertArea" rows="10" cols="80">
+            <textarea name="notificationArea" id="notificationArea" rows="10" cols="80">
                 This is my textarea to be replaced with CKEditor.
             </textarea>
         </form>
@@ -56,12 +56,12 @@
 @section('scripts')
 <script src="/lib/ckeditor/ckeditor.js"></script>
 <script type="text/javascript">
-    CKEDITOR.replace('advertArea', {
+    CKEDITOR.replace('notificationArea', {
     on: {
         save: function(evt)
         {
             // Do something here, for example:
-            var content = CKEDITOR.instances.advertArea.getData();
+            var content = CKEDITOR.instances.notificationArea.getData();
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 
             // Grab notification meta data.

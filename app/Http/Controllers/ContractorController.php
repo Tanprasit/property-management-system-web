@@ -174,7 +174,6 @@ class ContractorController extends Controller
 
     // Add new key to contractor. Id is contractor id.
     public function addKey(Request $request, $id)  {
-
         $propertyId = $request->Input('property_id');
         $pin = $request->Input('pin');
 
