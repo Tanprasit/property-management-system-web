@@ -50,7 +50,7 @@
 </div>
 
 <!-- Second table for displaying all keys connected to current contractor -->
-<h2 class="page-header">Active Keys</h2>
+<h2 class="page-header">Assigned Keys</h2>
 <div class="panel panel-default">
 <div class="panel-heading clearfix">
   <b class="pull-left">KEY LIST</b>

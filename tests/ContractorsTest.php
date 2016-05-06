@@ -19,7 +19,8 @@ class ContractorsTest extends TestCase
         $this->actingAs($admin)
             ->withSession(['foo' => 'bar'])
             ->visit($this->modelUrl . (String) $contractor->id )
-            ->see($contractor->full_name);
+            ->see($contractor->full_name)
+            ->assertResponseStatus('200');
     }
 
     public function testContractorUpdate() {
@@ -30,12 +31,17 @@ class ContractorsTest extends TestCase
         $contractor->mobile = "07576789877";
         $contractor->password = "Test@1234";
         $contractor->status = "admin";
-
         $contractor->save();
 
-        $savedContractor = User::where('full_name', '=', 'Test User')->first();
+        $contractor->status = "contractor";
+        $contractor->save();
 
-        $this->assertTrue($savedContractor->email == 'Test@gmail.com');
+        $admin = User::find(1);
+
+        $this->actingAs($admin)
+            ->withSession(['foo' => 'bar'])
+            ->visit($this->modelUrl . (String) $contractor->id )
+            ->assertTrue($contractor->status == 'contractor');
     }
 
     public function testContacterDelete() {
@@ -56,6 +62,7 @@ class ContractorsTest extends TestCase
             ->withSession(['foo' => 'bar'])
             ->visit($this->modelUrl . (String) $savedContractor->id )
             ->press('Delete')
-            ->seePageIs($this->modelUrl);
+            ->seePageIs($this->modelUrl)
+            ->assertResponseStatus('200');
     }
 }

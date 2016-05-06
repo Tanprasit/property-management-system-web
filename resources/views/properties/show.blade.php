@@ -110,7 +110,7 @@
 
 <!-- Third table for displaying authorized contractors -->
 <div class="row">
-  <h2 class="page-header">Authorized Contractors</h2>
+  <h2 class="page-header">Authorised Contractors</h2>
   <div class="panel panel-default">
   <div class="panel-heading clearfix">
      <b>CONTRACTOR LIST</b>
@@ -123,8 +123,7 @@
         <table id="contractors-table" class="display nowrap" cellspacing="0" width="100%">
             <thead>
               <tr>
-                  <th rowspan="2">Role</th>
-                  <th rowspan="2">Contractor</th>
+                  <th rowspan="2">Name</th>
                   <th colspan="2">Key</th>
               </tr>
                 <tr>
@@ -136,7 +135,6 @@
             <tbody>
             @foreach ($property->keys as $key)
               <tr class="clickable-row" href="{{ URL::route('contractors.show', [$key->contractor->id]) }}" onmouseover="this.style.cursor='pointer'">
-                <td>{{ $key->contractor->status }}</td>
                 <td>{{ $key->contractor->full_name }}</td>
                 <td>{{ $key->taken_at }}</td>
                 <td>{{ $key->returned_at }}</td>
